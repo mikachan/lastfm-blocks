@@ -1,0 +1,25 @@
+{
+	"extends": "plugin:@wordpress/eslint-plugin/recommended",
+	"env": {
+		"browser": true
+	},
+	"rules": {
+		"@wordpress/dependency-group": "error",
+		"@wordpress/i18n-text-domain": [
+			"error",
+			{
+				"allowedTextDomain": "create-block-theme"
+			}
+		],
+		"react/jsx-boolean-value": "error",
+		"unicorn/no-abusive-eslint-disable": "error"
+	},
+	"ignorePatterns": [ "src/lib" ],
+	"plugins": [ "unicorn" ],
+	"overrides": [
+		{
+			"files": [ "**/test/**/*.js" ],
+			"extends": [ "plugin:@wordpress/eslint-plugin/test-unit" ]
+		}
+	]
+}
