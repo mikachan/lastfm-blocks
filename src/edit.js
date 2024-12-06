@@ -7,45 +7,99 @@ import {
 	PanelBody,
 	TextControl,
 	ToggleControl,
+	Spinner,
 	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
 	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
+import { useDispatch } from '@wordpress/data';
+import { store as noticesStore } from '@wordpress/notices';
 
 /**
  * Internal dependencies
  */
-import './editor.scss';
+import { fetchLastFmTracks } from './lastfm-resolvers';
+import { TracksList } from './tracks-list';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { apiKey, username, numberOfTracks, showTrackImage } = attributes;
+	const {
+		apiKey,
+		username,
+		numberOfTracks,
+		showTrackImage,
+		includeLinkToTrack,
+	} = attributes;
+	const [ isLoading, setIsLoading ] = useState( false );
 	const [ tracks, setTracks ] = useState( [] );
-	const lastFmUrlPrefix =
-		'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks';
-
-	const lastFmTracks = async ( lastFmUrl ) => {
-		const response = await fetch( lastFmUrl );
-		const data = await response.json();
-		return data.recenttracks.track;
-	};
+	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
 
 	useEffect( () => {
-		const lastFmUrl = `${ lastFmUrlPrefix }&user=${ username }&api_key=${ apiKey }&format=json&limit=${ numberOfTracks }`;
-		lastFmTracks( lastFmUrl ).then( ( _tracks ) => {
-			setTracks( _tracks );
-		} );
-	}, [ apiKey, username, numberOfTracks ] );
+		if ( ! apiKey || ! username ) {
+			createErrorNotice(
+				__(
+					'Please provide a valid Last.fm API key and username.',
+					'lastfm-recently-played-block'
+				),
+				{
+					id: 'lastfm-recently-played-error',
+				}
+			);
+		}
+
+		if ( apiKey && username ) {
+			setIsLoading( true );
+
+			fetchLastFmTracks( apiKey, username, numberOfTracks )
+				.then( ( data ) => {
+					setTracks( data );
+					removeNotice( 'lastfm-recently-played-error' );
+				} )
+				.catch( ( error ) => {
+					setTracks( [] );
+					createErrorNotice( error, {
+						id: 'lastfm-recently-played-error',
+					} );
+				} )
+				.finally( () => {
+					setIsLoading( false );
+				} );
+		}
+	}, [
+		apiKey,
+		createErrorNotice,
+		numberOfTracks,
+		removeNotice,
+		setAttributes,
+		setIsLoading,
+		username,
+	] );
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Display', 'create-block-theme' ) }>
+				<PanelBody
+					title={ __( 'Display', 'lastfm-recently-played-block' ) }
+				>
+					<NumberControl
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+						min={ 1 }
+						max={ 50 }
+						label={ __(
+							'Number of Tracks',
+							'lastfm-recently-played-block'
+						) }
+						value={ numberOfTracks || 1 }
+						onChange={ ( value ) =>
+							setAttributes( { numberOfTracks: value } )
+						}
+					/>
 					<ToggleControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
 						label={ __(
-							'Show Track Images',
-							'create-block-theme'
+							'Show track images',
+							'lastfm-recently-played-block'
 						) }
 						checked={ showTrackImage }
 						onChange={ () =>
@@ -54,71 +108,66 @@ export default function Edit( { attributes, setAttributes } ) {
 							} )
 						}
 					/>
-					<NumberControl
+					<ToggleControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
-						label={ __( 'Number of Tracks', 'create-block-theme' ) }
-						value={ numberOfTracks || 1 }
-						onChange={ ( value ) =>
-							setAttributes( { numberOfTracks: value } )
+						label={ __(
+							'Include links to tracks',
+							'lastfm-recently-played-block'
+						) }
+						checked={ includeLinkToTrack }
+						onChange={ () =>
+							setAttributes( {
+								includeLinkToTrack: ! includeLinkToTrack,
+							} )
 						}
 					/>
 				</PanelBody>
-				<PanelBody title={ __( 'Settings', 'create-block-theme' ) }>
+				<PanelBody
+					title={ __(
+						'Last.fm User Details',
+						'lastfm-recently-played-block'
+					) }
+				>
 					<TextControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
-						label={ __( 'Last.fm API Key', 'create-block-theme' ) }
+						label={ __(
+							'Last.fm Username',
+							'lastfm-recently-played-block'
+						) }
+						value={ username || '' }
+						onChange={ ( value ) =>
+							setAttributes( { username: value } )
+						}
+					/>
+					<TextControl
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+						label={ __(
+							'Last.fm API Key',
+							'lastfm-recently-played-block'
+						) }
 						help={ __(
 							'Create a last.fm API key at last.fm/api.',
-							'create-block-theme'
+							'lastfm-recently-played-block'
 						) }
 						value={ apiKey || '' }
 						onChange={ ( value ) =>
 							setAttributes( { apiKey: value } )
 						}
 					/>
-					<TextControl
-						__nextHasNoMarginBottom
-						__next40pxDefaultSize
-						label={ __( 'Last.fm Username', 'create-block-theme' ) }
-						value={ username || '' }
-						onChange={ ( value ) =>
-							setAttributes( { username: value } )
-						}
-					/>
 				</PanelBody>
 			</InspectorControls>
 			<div { ...useBlockProps() }>
-				{ ! apiKey && (
-					<p>
-						{ __(
-							'Please enter your Last.fm API key in the block settings.',
-							'create-block-theme'
-						) }
-					</p>
+				{ isLoading && <Spinner /> }
+				{ ! isLoading && apiKey && username && (
+					<TracksList
+						tracks={ tracks }
+						showTrackImage={ showTrackImage }
+						includeLinkToTrack={ includeLinkToTrack }
+					/>
 				) }
-				{ ! username && (
-					<p>
-						{ __(
-							'Please enter your Last.fm username in the block settings.',
-							'create-block-theme'
-						) }
-					</p>
-				) }
-				<ul>
-					{ tracks.map( ( track ) => (
-						<li key={ track.date.uts }>
-							{ showTrackImage && (
-								<img
-									src={ track.image[ 0 ][ '#text' ] }
-									alt={ `${ track.artist[ '#text' ] } - ${ track.name }` }
-								/>
-							) }
-							{ track.artist[ '#text' ] } - { track.name }
-						</li>
-					) ) }
-				</ul>
 			</div>
 		</>
 	);

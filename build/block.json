@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "lastfm-blocks/lastfm-recently-played",
+  "name": "lastfm-recently-played-block/lastfm-recently-played-block",
   "version": "0.1.0",
-  "title": "Last.fm Recently Played",
+  "title": "Last.fm Recently Played Block",
   "category": "widgets",
   "icon": "playlist-audio",
-  "description": "Display your most recently played tracks from Last.fm.",
+  "description": "Display your most recently played tracks scrobbled from Last.fm.",
   "keywords": [
     "music",
     "sound"
@@ -25,11 +25,21 @@
     "showTrackImage": {
       "type": "boolean",
       "default": false
+    },
+    "includeLinkToTrack": {
+      "type": "boolean",
+      "default": true
     }
   },
   "supports": {
-    "html": false
+    "html": false,
+    "color": {
+      "background": true
+    }
   },
-  "textdomain": "lastfm-recently-played",
-  "editorScript": "file:./index.js"
+  "textdomain": "lastfm-recently-played-block",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
 }

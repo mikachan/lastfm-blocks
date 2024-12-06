@@ -1,5 +1,25 @@
-.wp-block-lastfm-blocks-lastfm-recently-played {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block {
+	margin: 0;
+
+	.tracks-list {
+		margin: 0;
+		padding: 0;
+
+		.no-tracks-found {
+			border: 1px solid #e0e0e0;
+			padding: 1rem;
+		}
+
+		li {
+			display: flex;
+			gap: 1rem;
+			align-items: center;
+			margin-bottom: 1rem;
+			list-style: none;
+
+			img {
+				border-radius: 50%;
+			}
+		}
+	}
 }
