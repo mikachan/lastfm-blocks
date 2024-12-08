@@ -1,6 +1,4 @@
 .wp-block-lastfm-recently-played-block-lastfm-recently-played-block {
-	margin: 0;
-
 	.tracks-list {
 		margin: 0;
 		padding: 0;
@@ -22,11 +20,20 @@
 				display: flex;
 				margin-right: 0.5em;
 
+				a {
+					display: block;
+					width: 2em;
+					height: 2em;
+				}
+
 				img {
 					position: relative;
 					width: 2em;
 					height: 2em;
+					max-width: 2em;
+					max-height: 2em;
 					z-index: 1;
+					background-color: currentColor;
 					box-shadow: 2px 2px 4px 0px rgba(112,112,112,1);
 				}
 

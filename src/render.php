@@ -22,7 +22,7 @@
 	>
 		<li>
 			<?php echo __(
-				'Latest scrobbled tracks from Last.fm.',
+				'Recently played tracks loading…',
 				'lastfm-recently-played-block'
 				); ?>
 		</li>

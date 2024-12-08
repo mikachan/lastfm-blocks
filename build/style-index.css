@@ -1,9 +1,6 @@
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
   \***************************************************************************************************************************************************************************************************************************************/
-.wp-block-lastfm-recently-played-block-lastfm-recently-played-block {
-  margin: 0;
-}
 .wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list {
   margin: 0;
   padding: 0;
@@ -24,11 +21,19 @@
   display: flex;
   margin-right: 0.5em;
 }
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image a {
+  display: block;
+  width: 2em;
+  height: 2em;
+}
 .wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image img {
   position: relative;
   width: 2em;
   height: 2em;
+  max-width: 2em;
+  max-height: 2em;
   z-index: 1;
+  background-color: currentColor;
   box-shadow: 2px 2px 4px 0px rgb(112, 112, 112);
 }
 .wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image .vinyl {
