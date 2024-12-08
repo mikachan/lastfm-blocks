@@ -28,6 +28,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		numberOfTracks,
 		showTrackImage,
 		includeLinkToTrack,
+		title,
 	} = attributes;
 	const [ isLoading, setIsLoading ] = useState( false );
 	const [ tracks, setTracks ] = useState( [] );
@@ -122,6 +123,22 @@ export default function Edit( { attributes, setAttributes } ) {
 							} )
 						}
 					/>
+					<TextControl
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+						label={ __(
+							'Custom Title',
+							'lastfm-recently-played-block'
+						) }
+						help={ __(
+							'Leave empty to hide the title.',
+							'lastfm-recently-played-block'
+						) }
+						value={ title || '' }
+						onChange={ ( value ) =>
+							setAttributes( { title: value } )
+						}
+					/>
 				</PanelBody>
 				<PanelBody
 					title={ __(
@@ -162,11 +179,14 @@ export default function Edit( { attributes, setAttributes } ) {
 			<div { ...useBlockProps() }>
 				{ isLoading && <Spinner /> }
 				{ ! isLoading && apiKey && username && (
-					<TracksList
-						tracks={ tracks }
-						showTrackImage={ showTrackImage }
-						includeLinkToTrack={ includeLinkToTrack }
-					/>
+					<>
+						{ title && <h3>{ title }</h3> }
+						<TracksList
+							tracks={ tracks }
+							showTrackImage={ showTrackImage }
+							includeLinkToTrack={ includeLinkToTrack }
+						/>
+					</>
 				) }
 			</div>
 		</>

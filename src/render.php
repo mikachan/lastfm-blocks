@@ -5,14 +5,19 @@
 	$numberOfTracks = isset( $attributes['numberOfTracks'] ) ? esc_attr( $attributes['numberOfTracks'] ) : '1';
 	$showTrackImage = isset( $attributes['showTrackImage'] ) ? $attributes['showTrackImage'] : false;
 	$includeLinkToTrack = isset( $attributes['includeLinkToTrack'] ) ? $attributes['includeLinkToTrack'] : false;
+	$title = isset( $attributes['title'] ) ? esc_attr( $attributes['title'] ) : '';
 ?>
 
 <div <?php echo get_block_wrapper_attributes(); ?>>
+	<?php if ( $title ) : ?>
+		<h3><?php echo esc_html( $title ); ?></h3>
+	<?php endif; ?>
 	<ul
 		class="tracks-list"
 		data-lastfm-apiKey="<?php echo esc_attr( $apiKey ); ?>"
 		data-lastfm-username="<?php echo esc_attr( $username ); ?>"
 		data-lastfm-numberOfTracks="<?php echo esc_attr( $numberOfTracks ); ?>"
+		data-lastfm-title="<?php echo esc_attr( $title ); ?>"
 		<?php if ( $showTrackImage ) : ?>
 			data-lastfm-showTrackImage="true"
 		<?php endif; ?>

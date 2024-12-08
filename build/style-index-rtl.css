@@ -19,6 +19,24 @@
   margin-bottom: 1rem;
   list-style: none;
 }
-.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li img {
-  border-radius: 50%;
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image {
+  position: relative;
+  display: flex;
+  margin-left: 0.5em;
+}
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image img {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  z-index: 1;
+  box-shadow: -2px 2px 4px 0px rgb(112, 112, 112);
+}
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image .vinyl {
+  background-image: url(images/vinyl.be86b2e8.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: -45%;
+  width: 2em;
+  height: 2em;
 }

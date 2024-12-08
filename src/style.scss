@@ -17,8 +17,28 @@
 			margin-bottom: 1rem;
 			list-style: none;
 
-			img {
-				border-radius: 50%;
+			.track-image {
+				position: relative;
+				display: flex;
+				margin-right: 0.5em;
+
+				img {
+					position: relative;
+					width: 2em;
+					height: 2em;
+					z-index: 1;
+					box-shadow: 2px 2px 4px 0px rgba(112,112,112,1);
+				}
+
+				.vinyl {
+					background-image: url('vinyl.png');
+					background-repeat: no-repeat;
+					background-size: contain;
+					position: absolute;
+					right: -45%;
+					width: 2em;
+					height: 2em;
+				}
 			}
 		}
 	}

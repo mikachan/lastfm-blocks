@@ -16,8 +16,8 @@
 			"type": "string"
 		},
 		"numberOfTracks": {
-			"type": "number",
-			"default": 1
+			"type": "string",
+			"default": "1"
 		},
 		"showTrackImage": {
 			"type": "boolean",
@@ -26,13 +26,50 @@
 		"includeLinkToTrack": {
 			"type": "boolean",
 			"default": true
+		},
+		"title": {
+			"type": "string"
 		}
 	},
 	"supports": {
 		"html": false,
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
 		"color": {
-			"background": true
-		}
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"margin": false,
+				"padding": false
+			}
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalFontStyle": true,
+			"__experimentalFontWeight": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextTransform": true,
+			"__experimentalWritingMode": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		},
+		"shadow": true
 	},
 	"textdomain": "lastfm-recently-played-block",
 	"editorScript": "file:./index.js",
