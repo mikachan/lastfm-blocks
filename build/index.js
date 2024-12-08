@@ -53,8 +53,7 @@ function Edit({
     username,
     numberOfTracks,
     showTrackImage,
-    includeLinkToTrack,
-    title
+    includeLinkToTrack
   } = attributes;
   const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
   const [tracks, setTracks] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([]);
@@ -113,15 +112,6 @@ function Edit({
           onChange: () => setAttributes({
             includeLinkToTrack: !includeLinkToTrack
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          __nextHasNoMarginBottom: true,
-          __next40pxDefaultSize: true,
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Custom Title', 'lastfm-recently-played-block'),
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Leave empty to hide the title.', 'lastfm-recently-played-block'),
-          value: title || '',
-          onChange: value => setAttributes({
-            title: value
-          })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Last.fm User Details', 'lastfm-recently-played-block'),
@@ -146,14 +136,12 @@ function Edit({
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
-      children: [isLoading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, {}), !isLoading && apiKey && username && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-        children: [title && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
-          children: title
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_tracks_list__WEBPACK_IMPORTED_MODULE_7__.TracksList, {
+      children: [isLoading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, {}), !isLoading && apiKey && username && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_tracks_list__WEBPACK_IMPORTED_MODULE_7__.TracksList, {
           tracks: tracks,
           showTrackImage: showTrackImage,
           includeLinkToTrack: includeLinkToTrack
-        })]
+        })
       })]
     })]
   });
@@ -412,7 +400,7 @@ module.exports = window["wp"]["notices"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lastfm-recently-played-block/lastfm-recently-played-block","version":"0.1.0","title":"Last.fm Recently Played Block","category":"widgets","icon":"playlist-audio","description":"Display your most recently played tracks scrobbled from Last.fm.","keywords":["music","sound"],"attributes":{"apiKey":{"type":"string"},"username":{"type":"string"},"numberOfTracks":{"type":"string","default":"1"},"showTrackImage":{"type":"boolean","default":false},"includeLinkToTrack":{"type":"boolean","default":true},"title":{"type":"string"}},"supports":{"html":false,"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true},"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true}},"spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"margin":false,"padding":false}},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalTextDecoration":true,"__experimentalFontStyle":true,"__experimentalFontWeight":true,"__experimentalLetterSpacing":true,"__experimentalTextTransform":true,"__experimentalWritingMode":true,"__experimentalDefaultControls":{"fontSize":true}},"shadow":true},"textdomain":"lastfm-recently-played-block","editorScript":"file:./index.js","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lastfm-recently-played-block/lastfm-recently-played-block","version":"0.1.0","title":"Last.fm Recently Played Block","category":"widgets","icon":"playlist-audio","description":"Display your most recently played tracks scrobbled from Last.fm.","keywords":["music","sound"],"attributes":{"apiKey":{"type":"string"},"username":{"type":"string"},"numberOfTracks":{"type":"string","default":"1"},"showTrackImage":{"type":"boolean","default":false},"includeLinkToTrack":{"type":"boolean","default":true}},"supports":{"html":false,"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true},"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true}},"spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"margin":false,"padding":false}},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalTextDecoration":true,"__experimentalFontStyle":true,"__experimentalFontWeight":true,"__experimentalLetterSpacing":true,"__experimentalTextTransform":true,"__experimentalWritingMode":true,"__experimentalDefaultControls":{"fontSize":true}},"shadow":true},"textdomain":"lastfm-recently-played-block","editorScript":"file:./index.js","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

@@ -29,9 +29,6 @@
     "includeLinkToTrack": {
       "type": "boolean",
       "default": true
-    },
-    "title": {
-      "type": "string"
     }
   },
   "supports": {
