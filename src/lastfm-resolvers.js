@@ -9,7 +9,7 @@ const lastFmGetRecentTracks = 'user.getrecenttracks';
 export async function fetchLastFmTracks(
 	apiKey,
 	username,
-	numberOfTracks = 1
+	numberOfTracks = '1'
 ) {
 	return fetch(
 		`${ lastFmUrl }?method=${ lastFmGetRecentTracks }&user=${ username }&api_key=${ apiKey }&format=json&limit=${ numberOfTracks }`
@@ -29,7 +29,17 @@ export async function fetchLastFmTracks(
 				);
 			}
 			if ( data.recenttracks.track ) {
-				return data.recenttracks.track;
+				let tracks = data.recenttracks.track;
+
+				// Check if number of tracks returned matches the requested number of tracks.
+				// Sometimes the API returns an extra track.
+				if (
+					data.recenttracks.track.length ===
+					parseInt( numberOfTracks ) + 1
+				) {
+					tracks = data.recenttracks.track.slice( 0, numberOfTracks );
+				}
+				return tracks;
 			}
 			return [];
 		} )

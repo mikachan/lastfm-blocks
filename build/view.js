@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const lastFmUrl = 'https://ws.audioscrobbler.com/2.0/';
 const lastFmGetRecentTracks = 'user.getrecenttracks';
-async function fetchLastFmTracks(apiKey, username, numberOfTracks = 1) {
+async function fetchLastFmTracks(apiKey, username, numberOfTracks = '1') {
   return fetch(`${lastFmUrl}?method=${lastFmGetRecentTracks}&user=${username}&api_key=${apiKey}&format=json&limit=${numberOfTracks}`).then(response => response.json()).then(data => {
     if (data.error) {
       throw data.message;
@@ -30,7 +30,14 @@ async function fetchLastFmTracks(apiKey, username, numberOfTracks = 1) {
       (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No Last.fm tracks found from user "%s".', 'lastfm-recently-played-block'), username);
     }
     if (data.recenttracks.track) {
-      return data.recenttracks.track;
+      let tracks = data.recenttracks.track;
+
+      // Check if number of tracks returned matches the requested number of tracks.
+      // Sometimes the API returns an extra track.
+      if (data.recenttracks.track.length === parseInt(numberOfTracks) + 1) {
+        tracks = data.recenttracks.track.slice(0, numberOfTracks);
+      }
+      return tracks;
     }
     return [];
   }).catch(error => {
@@ -61,9 +68,9 @@ __webpack_require__.r(__webpack_exports__);
 
 function TracksList({
   tracks,
+  includeLinkToTrack,
   showTrackImage,
-  imageStyle,
-  includeLinkToTrack
+  imageStyle
 }) {
   const isTracksValid = tracks?.length > 0;
   const TrackLinkTag = ({
@@ -247,15 +254,15 @@ const tracksAttr = tracksListContainer.dataset;
 const apiKey = tracksAttr.lastfmApikey;
 const username = tracksAttr.lastfmUsername;
 const numberOfTracks = tracksAttr.lastfmNumberoftracks;
+const includeLinkToTrack = 'true' === tracksAttr.lastfmIncludelinktotrack;
 const showTrackImage = 'true' === tracksAttr.lastfmShowtrackimage;
 const imageStyle = tracksAttr.lastfmImagestyle;
-const includeLinkToTrack = 'true' === tracksAttr.lastfmIncludelinktotrack;
 (0,_lastfm_resolvers__WEBPACK_IMPORTED_MODULE_1__.fetchLastFmTracks)(apiKey, username, numberOfTracks).then(tracks => {
   root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_tracks_list__WEBPACK_IMPORTED_MODULE_2__.TracksList, {
     tracks: tracks,
+    includeLinkToTrack: includeLinkToTrack,
     showTrackImage: showTrackImage,
-    imageStyle: imageStyle,
-    includeLinkToTrack: includeLinkToTrack
+    imageStyle: imageStyle
   }));
 }).catch(error => {
   // eslint-disable-next-line no-console

@@ -17,18 +17,18 @@ const tracksAttr = tracksListContainer.dataset;
 const apiKey = tracksAttr.lastfmApikey;
 const username = tracksAttr.lastfmUsername;
 const numberOfTracks = tracksAttr.lastfmNumberoftracks;
+const includeLinkToTrack = 'true' === tracksAttr.lastfmIncludelinktotrack;
 const showTrackImage = 'true' === tracksAttr.lastfmShowtrackimage;
 const imageStyle = tracksAttr.lastfmImagestyle;
-const includeLinkToTrack = 'true' === tracksAttr.lastfmIncludelinktotrack;
 
 fetchLastFmTracks( apiKey, username, numberOfTracks )
 	.then( ( tracks ) => {
 		root.render(
 			<TracksList
 				tracks={ tracks }
+				includeLinkToTrack={ includeLinkToTrack }
 				showTrackImage={ showTrackImage }
 				imageStyle={ imageStyle }
-				includeLinkToTrack={ includeLinkToTrack }
 			/>
 		);
 	} )

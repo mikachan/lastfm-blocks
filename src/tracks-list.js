@@ -5,9 +5,9 @@ import { __ } from '@wordpress/i18n';
 
 export function TracksList( {
 	tracks,
+	includeLinkToTrack,
 	showTrackImage,
 	imageStyle,
-	includeLinkToTrack,
 } ) {
 	const isTracksValid = tracks?.length > 0;
 
