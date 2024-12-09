@@ -14,12 +14,17 @@ export function TracksList( {
 	const TrackLinkTag = ( { children, url } ) => {
 		if ( includeLinkToTrack ) {
 			return (
-				<a href={ url } target="_blank" rel="noreferrer">
+				<a
+					href={ url }
+					target="_blank"
+					rel="noreferrer"
+					className="track-name"
+				>
 					{ children }
 				</a>
 			);
 		}
-		return <span>{ children }</span>;
+		return <span className="track-name">{ children }</span>;
 	};
 
 	return (
@@ -53,7 +58,9 @@ export function TracksList( {
 								{ track.name }
 							</TrackLinkTag>
 							<br />
-							<span>{ track.artist[ '#text' ] }</span>
+							<span className="artist-name">
+								{ track.artist[ '#text' ] }
+							</span>
 						</div>
 					</li>
 				) ) }

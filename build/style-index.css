@@ -64,5 +64,8 @@
 .wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image.cassette .format {
   background-image: url(images/cassette.2a963de8.png);
 }
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .artist-name {
+  font-weight: bold;
+}
 
 /*# sourceMappingURL=style-index.css.map*/

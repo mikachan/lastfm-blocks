@@ -281,10 +281,12 @@ function TracksList({
         href: url,
         target: "_blank",
         rel: "noreferrer",
+        className: "track-name",
         children: children
       });
     }
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+      className: "track-name",
       children: children
     });
   };
@@ -316,6 +318,7 @@ function TracksList({
           url: track.url,
           children: track.name
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "artist-name",
           children: track.artist['#text']
         })]
       })]
