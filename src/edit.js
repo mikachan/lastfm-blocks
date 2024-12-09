@@ -4,6 +4,7 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
+	SelectControl,
 	PanelBody,
 	TextControl,
 	ToggleControl,
@@ -27,6 +28,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		username,
 		numberOfTracks,
 		showTrackImage,
+		imageStyle,
 		includeLinkToTrack,
 	} = attributes;
 	const [ isLoading, setIsLoading ] = useState( false );
@@ -80,6 +82,20 @@ export default function Edit( { attributes, setAttributes } ) {
 				<PanelBody
 					title={ __( 'Display', 'lastfm-recently-played-block' ) }
 				>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+						label={ __(
+							'Include links to tracks',
+							'lastfm-recently-played-block'
+						) }
+						checked={ includeLinkToTrack }
+						onChange={ () =>
+							setAttributes( {
+								includeLinkToTrack: ! includeLinkToTrack,
+							} )
+						}
+					/>
 					<NumberControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
@@ -108,20 +124,24 @@ export default function Edit( { attributes, setAttributes } ) {
 							} )
 						}
 					/>
-					<ToggleControl
-						__nextHasNoMarginBottom
-						__next40pxDefaultSize
-						label={ __(
-							'Include links to tracks',
-							'lastfm-recently-played-block'
-						) }
-						checked={ includeLinkToTrack }
-						onChange={ () =>
-							setAttributes( {
-								includeLinkToTrack: ! includeLinkToTrack,
-							} )
-						}
-					/>
+					{ showTrackImage && (
+						<SelectControl
+							__next40pxDefaultSize
+							label={ __(
+								'Image Style',
+								'lastfm-recently-played-block'
+							) }
+							value={ imageStyle || 'vinyl' }
+							options={ [
+								{ label: 'Vinyl', value: 'vinyl' },
+								{ label: 'Cassette', value: 'cassette' },
+								{ label: 'CD', value: 'cd' },
+							] }
+							onChange={ ( value ) =>
+								setAttributes( { imageStyle: value } )
+							}
+						/>
+					) }
 				</PanelBody>
 				<PanelBody
 					title={ __(
@@ -166,6 +186,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						<TracksList
 							tracks={ tracks }
 							showTrackImage={ showTrackImage }
+							imageStyle={ imageStyle }
 							includeLinkToTrack={ includeLinkToTrack }
 						/>
 					</>

@@ -49,3 +49,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 Image of vinyl record from rawpixel.com.
 Source: https://www.rawpixel.com/image/6338463/png-sticker-vintage
+
+Image of CD from rawpixel.com.
+Source: https://www.rawpixel.com/image/7672268/disk-png-sticker-transparent-background
+
+Image of cassette tape from rawpixel.com.
+Source: https://www.rawpixel.com/image/7709394/png-sticker-vintage

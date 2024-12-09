@@ -26,6 +26,10 @@
       "type": "boolean",
       "default": false
     },
+    "imageStyle": {
+      "type": "string",
+      "default": "vinyl"
+    },
     "includeLinkToTrack": {
       "type": "boolean",
       "default": true

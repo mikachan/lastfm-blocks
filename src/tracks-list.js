@@ -3,7 +3,12 @@
  */
 import { __ } from '@wordpress/i18n';
 
-export function TracksList( { tracks, showTrackImage, includeLinkToTrack } ) {
+export function TracksList( {
+	tracks,
+	showTrackImage,
+	imageStyle,
+	includeLinkToTrack,
+} ) {
 	const isTracksValid = tracks?.length > 0;
 
 	const TrackLinkTag = ( { children, url } ) => {
@@ -26,15 +31,20 @@ export function TracksList( { tracks, showTrackImage, includeLinkToTrack } ) {
 			) }
 			{ isTracksValid &&
 				tracks.map( ( track ) => (
-					<li key={ track.date.uts }>
+					<li key={ track.url }>
 						{ showTrackImage && (
-							<div className="track-image">
+							<div className={ `track-image ${ imageStyle }` }>
 								<TrackLinkTag url={ track.url }>
-									<img
-										src={ track.image[ 1 ][ '#text' ] }
-										alt={ `${ track.artist[ '#text' ] } - ${ track.name }` }
-									/>
-									<span className="vinyl" />
+									<span
+										className="artwork"
+										role="img"
+										aria-label={ `${ track.artist[ '#text' ] } - ${ track.name }` }
+										style={ {
+											backgroundImage: `url(${ track.image[ 1 ][ '#text' ] })`,
+										} }
+									>
+										<span className="format" />
+									</span>
 								</TrackLinkTag>
 							</div>
 						) }

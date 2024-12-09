@@ -19,31 +19,50 @@
 .wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image {
   position: relative;
   display: flex;
-  margin-right: 0.5em;
+  width: 3em;
+  height: 3em;
 }
 .wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image a {
-  display: block;
-  width: 2em;
-  height: 2em;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
-.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image img {
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image .artwork {
   position: relative;
-  width: 2em;
-  height: 2em;
-  max-width: 2em;
-  max-height: 2em;
-  z-index: 1;
+  width: 80%;
+  height: 80%;
+  max-width: 80%;
+  max-height: 80%;
   background-color: currentColor;
-  box-shadow: 2px 2px 4px 0px rgb(2, 2, 2);
-}
-.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image .vinyl {
-  background-image: url(images/vinyl.be86b2e8.png);
   background-repeat: no-repeat;
   background-size: contain;
+  box-shadow: 2px 2px 4px 0px rgb(2, 2, 2);
+}
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image .format {
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: -1;
   position: absolute;
-  right: -45%;
-  width: 2em;
-  height: 2em;
+  top: 0;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+}
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image.vinyl .format {
+  background-image: url(images/vinyl.be86b2e8.png);
+}
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image.cd .format {
+  background-image: url(images/cd.a5ec40f3.png);
+}
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image.cassette .artwork {
+  height: 48%;
+  max-height: 48%;
+  background-size: cover;
+  background-position: center;
+}
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image.cassette .format {
+  background-image: url(images/cassette.2a963de8.png);
 }
 
 /*# sourceMappingURL=style-index.css.map*/

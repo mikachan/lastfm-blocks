@@ -53,6 +53,7 @@ function Edit({
     username,
     numberOfTracks,
     showTrackImage,
+    imageStyle,
     includeLinkToTrack
   } = attributes;
   const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
@@ -86,7 +87,15 @@ function Edit({
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Display', 'lastfm-recently-played-block'),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalNumberControl, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          __nextHasNoMarginBottom: true,
+          __next40pxDefaultSize: true,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Include links to tracks', 'lastfm-recently-played-block'),
+          checked: includeLinkToTrack,
+          onChange: () => setAttributes({
+            includeLinkToTrack: !includeLinkToTrack
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalNumberControl, {
           __nextHasNoMarginBottom: true,
           __next40pxDefaultSize: true,
           min: 1,
@@ -104,13 +113,22 @@ function Edit({
           onChange: () => setAttributes({
             showTrackImage: !showTrackImage
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-          __nextHasNoMarginBottom: true,
+        }), showTrackImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           __next40pxDefaultSize: true,
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Include links to tracks', 'lastfm-recently-played-block'),
-          checked: includeLinkToTrack,
-          onChange: () => setAttributes({
-            includeLinkToTrack: !includeLinkToTrack
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image Style', 'lastfm-recently-played-block'),
+          value: imageStyle || 'vinyl',
+          options: [{
+            label: 'Vinyl',
+            value: 'vinyl'
+          }, {
+            label: 'Cassette',
+            value: 'cassette'
+          }, {
+            label: 'CD',
+            value: 'cd'
+          }],
+          onChange: value => setAttributes({
+            imageStyle: value
           })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
@@ -140,6 +158,7 @@ function Edit({
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_tracks_list__WEBPACK_IMPORTED_MODULE_7__.TracksList, {
           tracks: tracks,
           showTrackImage: showTrackImage,
+          imageStyle: imageStyle,
           includeLinkToTrack: includeLinkToTrack
         })
       })]
@@ -242,6 +261,7 @@ __webpack_require__.r(__webpack_exports__);
 function TracksList({
   tracks,
   showTrackImage,
+  imageStyle,
   includeLinkToTrack
 }) {
   const isTracksValid = tracks?.length > 0;
@@ -268,15 +288,20 @@ function TracksList({
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No tracks found.', 'lastfm-recently-played-block')
     }), isTracksValid && tracks.map(track => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
       children: [showTrackImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "track-image",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(TrackLinkTag, {
+        className: `track-image ${imageStyle}`,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TrackLinkTag, {
           url: track.url,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: track.image[1]['#text'],
-            alt: `${track.artist['#text']} - ${track.name}`
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            className: "vinyl"
-          })]
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "artwork",
+            role: "img",
+            "aria-label": `${track.artist['#text']} - ${track.name}`,
+            style: {
+              backgroundImage: `url(${track.image[1]['#text']})`
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              className: "format"
+            })
+          })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "track-info",
@@ -287,7 +312,7 @@ function TracksList({
           children: track.artist['#text']
         })]
       })]
-    }, track.date.uts))]
+    }, track.url))]
   });
 }
 
@@ -391,7 +416,7 @@ module.exports = window["wp"]["notices"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lastfm-recently-played-block/lastfm-recently-played-block","version":"0.1.0","title":"Last.fm Recently Played Block","category":"widgets","icon":"playlist-audio","description":"Display your most recently played tracks scrobbled from Last.fm.","keywords":["music","sound"],"attributes":{"apiKey":{"type":"string"},"username":{"type":"string"},"numberOfTracks":{"type":"string","default":"1"},"showTrackImage":{"type":"boolean","default":false},"includeLinkToTrack":{"type":"boolean","default":true}},"supports":{"html":false,"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true},"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true}},"spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"margin":false,"padding":false}},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalTextDecoration":true,"__experimentalFontStyle":true,"__experimentalFontWeight":true,"__experimentalLetterSpacing":true,"__experimentalTextTransform":true,"__experimentalWritingMode":true,"__experimentalDefaultControls":{"fontSize":true}},"shadow":true},"textdomain":"lastfm-recently-played-block","editorScript":"file:./index.js","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lastfm-recently-played-block/lastfm-recently-played-block","version":"0.1.0","title":"Last.fm Recently Played Block","category":"widgets","icon":"playlist-audio","description":"Display your most recently played tracks scrobbled from Last.fm.","keywords":["music","sound"],"attributes":{"apiKey":{"type":"string"},"username":{"type":"string"},"numberOfTracks":{"type":"string","default":"1"},"showTrackImage":{"type":"boolean","default":false},"imageStyle":{"type":"string","default":"vinyl"},"includeLinkToTrack":{"type":"boolean","default":true}},"supports":{"html":false,"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true},"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true}},"spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"margin":false,"padding":false}},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalTextDecoration":true,"__experimentalFontStyle":true,"__experimentalFontWeight":true,"__experimentalLetterSpacing":true,"__experimentalTextTransform":true,"__experimentalWritingMode":true,"__experimentalDefaultControls":{"fontSize":true}},"shadow":true},"textdomain":"lastfm-recently-played-block","editorScript":"file:./index.js","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

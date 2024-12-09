@@ -62,6 +62,7 @@ __webpack_require__.r(__webpack_exports__);
 function TracksList({
   tracks,
   showTrackImage,
+  imageStyle,
   includeLinkToTrack
 }) {
   const isTracksValid = tracks?.length > 0;
@@ -88,15 +89,20 @@ function TracksList({
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No tracks found.', 'lastfm-recently-played-block')
     }), isTracksValid && tracks.map(track => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
       children: [showTrackImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "track-image",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(TrackLinkTag, {
+        className: `track-image ${imageStyle}`,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TrackLinkTag, {
           url: track.url,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: track.image[1]['#text'],
-            alt: `${track.artist['#text']} - ${track.name}`
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            className: "vinyl"
-          })]
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "artwork",
+            role: "img",
+            "aria-label": `${track.artist['#text']} - ${track.name}`,
+            style: {
+              backgroundImage: `url(${track.image[1]['#text']})`
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              className: "format"
+            })
+          })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "track-info",
@@ -107,7 +113,7 @@ function TracksList({
           children: track.artist['#text']
         })]
       })]
-    }, track.date.uts))]
+    }, track.url))]
   });
 }
 
@@ -235,18 +241,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const tracksListContainer = document.querySelector('.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list');
+const tracksListContainer = document.querySelector('.wp-block-lastfm-recently-played-block-lastfm-recently-played-block');
 const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createRoot)(tracksListContainer);
 const tracksAttr = tracksListContainer.dataset;
 const apiKey = tracksAttr.lastfmApikey;
 const username = tracksAttr.lastfmUsername;
 const numberOfTracks = tracksAttr.lastfmNumberoftracks;
 const showTrackImage = 'true' === tracksAttr.lastfmShowtrackimage;
+const imageStyle = tracksAttr.lastfmImagestyle;
 const includeLinkToTrack = 'true' === tracksAttr.lastfmIncludelinktotrack;
 (0,_lastfm_resolvers__WEBPACK_IMPORTED_MODULE_1__.fetchLastFmTracks)(apiKey, username, numberOfTracks).then(tracks => {
   root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_tracks_list__WEBPACK_IMPORTED_MODULE_2__.TracksList, {
     tracks: tracks,
     showTrackImage: showTrackImage,
+    imageStyle: imageStyle,
     includeLinkToTrack: includeLinkToTrack
   }));
 }).catch(error => {
