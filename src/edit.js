@@ -2,7 +2,13 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	AlignmentControl,
+	BlockControls,
+	useBlockProps,
+	useBlockEditingMode,
+} from '@wordpress/block-editor';
 import {
 	SelectControl,
 	PanelBody,
@@ -30,7 +36,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		showTrackImage,
 		imageStyle,
 		includeLinkToTrack,
+		textAlign,
 	} = attributes;
+	const blockEditingMode = useBlockEditingMode();
 	const [ isLoading, setIsLoading ] = useState( false );
 	const [ tracks, setTracks ] = useState( [] );
 	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
@@ -183,11 +191,24 @@ export default function Edit( { attributes, setAttributes } ) {
 				{ isLoading && <Spinner /> }
 				{ ! isLoading && apiKey && username && (
 					<>
+						{ blockEditingMode === 'default' && (
+							<BlockControls group="block">
+								<AlignmentControl
+									value={ textAlign }
+									onChange={ ( nextAlign ) => {
+										setAttributes( {
+											textAlign: nextAlign,
+										} );
+									} }
+								/>
+							</BlockControls>
+						) }
 						<TracksList
 							tracks={ tracks }
 							showTrackImage={ showTrackImage }
 							imageStyle={ imageStyle }
 							includeLinkToTrack={ includeLinkToTrack }
+							textAlign={ textAlign }
 						/>
 					</>
 				) }

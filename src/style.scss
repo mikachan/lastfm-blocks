@@ -81,5 +81,9 @@
 				font-weight: bold;
 			}
 		}
+
+		li:last-child {
+			margin-bottom: 0;
+		}
 	}
 }

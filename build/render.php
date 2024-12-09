@@ -1,5 +1,6 @@
 <?php
 	// Get the block attributes.
+	$text_align = isset( $attributes['textAlign'] ) ? esc_attr( $attributes['textAlign'] ) : 'left';
 	$api_key             = isset( $attributes['apiKey'] ) ? esc_attr( $attributes['apiKey'] ) : '';
 	$username           = isset( $attributes['username'] ) ? esc_attr( $attributes['username'] ) : '';
 	$number_of_tracks     = isset( $attributes['numberOfTracks'] ) ? esc_attr( $attributes['numberOfTracks'] ) : '1';
@@ -10,6 +11,7 @@
 
 <div
 	<?php echo get_block_wrapper_attributes(); ?>
+	data-lastfm-textAlign="<?php echo esc_attr( $text_align ); ?>"
 	data-lastfm-apiKey="<?php echo esc_attr( $api_key ); ?>"
 	data-lastfm-username="<?php echo esc_attr( $username ); ?>"
 	data-lastfm-numberOfTracks="<?php echo esc_attr( $number_of_tracks ); ?>"

@@ -20,11 +20,13 @@ const numberOfTracks = tracksAttr.lastfmNumberoftracks;
 const includeLinkToTrack = 'true' === tracksAttr.lastfmIncludelinktotrack;
 const showTrackImage = 'true' === tracksAttr.lastfmShowtrackimage;
 const imageStyle = tracksAttr.lastfmImagestyle;
+const textAlign = tracksAttr.lastfmTextalign;
 
 fetchLastFmTracks( apiKey, username, numberOfTracks )
 	.then( ( tracks ) => {
 		root.render(
 			<TracksList
+				textAlign={ textAlign }
 				tracks={ tracks }
 				includeLinkToTrack={ includeLinkToTrack }
 				showTrackImage={ showTrackImage }

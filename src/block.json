@@ -9,6 +9,9 @@
 	"description": "Display your most recently played tracks scrobbled from Last.fm.",
 	"keywords": [ "music", "sound" ],
 	"attributes": {
+		"textAlign": {
+			"type": "string"
+		},
 		"apiKey": {
 			"type": "string"
 		},
@@ -34,6 +37,7 @@
 	},
 	"supports": {
 		"html": false,
+		"align": true,
 		"__experimentalBorder": {
 			"color": true,
 			"radius": true,

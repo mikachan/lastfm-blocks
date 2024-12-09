@@ -67,3 +67,6 @@
 .wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .artist-name {
   font-weight: bold;
 }
+.wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li:last-child {
+  margin-bottom: 0;
+}

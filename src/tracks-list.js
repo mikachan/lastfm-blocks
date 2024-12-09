@@ -8,6 +8,7 @@ export function TracksList( {
 	includeLinkToTrack,
 	showTrackImage,
 	imageStyle,
+	textAlign,
 } ) {
 	const isTracksValid = tracks?.length > 0;
 
@@ -28,7 +29,7 @@ export function TracksList( {
 	};
 
 	return (
-		<ul className="tracks-list">
+		<ul className={ `tracks-list ${ `has-text-align-${ textAlign }` }` }>
 			{ ! isTracksValid && (
 				<li className="no-tracks-found">
 					{ __( 'No tracks found.', 'lastfm-recently-played-block' ) }

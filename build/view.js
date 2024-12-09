@@ -70,7 +70,8 @@ function TracksList({
   tracks,
   includeLinkToTrack,
   showTrackImage,
-  imageStyle
+  imageStyle,
+  textAlign
 }) {
   const isTracksValid = tracks?.length > 0;
   const TrackLinkTag = ({
@@ -92,7 +93,7 @@ function TracksList({
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
-    className: "tracks-list",
+    className: `tracks-list ${`has-text-align-${textAlign}`}`,
     children: [!isTracksValid && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
       className: "no-tracks-found",
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No tracks found.', 'lastfm-recently-played-block')
@@ -260,8 +261,10 @@ const numberOfTracks = tracksAttr.lastfmNumberoftracks;
 const includeLinkToTrack = 'true' === tracksAttr.lastfmIncludelinktotrack;
 const showTrackImage = 'true' === tracksAttr.lastfmShowtrackimage;
 const imageStyle = tracksAttr.lastfmImagestyle;
+const textAlign = tracksAttr.lastfmTextalign;
 (0,_lastfm_resolvers__WEBPACK_IMPORTED_MODULE_1__.fetchLastFmTracks)(apiKey, username, numberOfTracks).then(tracks => {
   root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_tracks_list__WEBPACK_IMPORTED_MODULE_2__.TracksList, {
+    textAlign: textAlign,
     tracks: tracks,
     includeLinkToTrack: includeLinkToTrack,
     showTrackImage: showTrackImage,
