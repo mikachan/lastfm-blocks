@@ -34,7 +34,7 @@
   max-height: 2em;
   z-index: 1;
   background-color: currentColor;
-  box-shadow: -2px 2px 4px 0px rgb(112, 112, 112);
+  box-shadow: -2px 2px 4px 0px rgb(2, 2, 2);
 }
 .wp-block-lastfm-recently-played-block-lastfm-recently-played-block .tracks-list li .track-image .vinyl {
   background-image: url(images/vinyl.be86b2e8.png);

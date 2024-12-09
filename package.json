@@ -1,7 +1,7 @@
 {
 	"name": "lastfm-recently-played-block",
 	"version": "0.1.0",
-	"description": "Display your most recently played tracks from Last.fm.",
+	"description": "A block that displays your most recently scrobbled tracks from Last.fm.",
 	"author": "Sarah Norris",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
