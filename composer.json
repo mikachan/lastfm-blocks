@@ -1,0 +1,29 @@
+{
+	"name": "lastfm-recently-played-block/lastfm-recently-played-block",
+	"description": "A block that displays your most recently scrobbled tracks from Last.fm.",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=7.0"
+	},
+	"config": {
+		"platform": {
+			"php": "7.0"
+		},
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"require-dev": {
+		"sirbrillig/phpcs-variable-analysis": "^2.8",
+		"squizlabs/php_codesniffer": "^3.5",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"wp-coding-standards/wpcs": "^3.0"
+	},
+	"scripts": {
+		"format": "phpcbf --standard=phpcs.xml.dist --report-summary --report-source",
+		"lint": "@php ./vendor/bin/phpcs",
+		"lint:fix": "@php ./vendor/bin/phpcbf"
+	}
+}
