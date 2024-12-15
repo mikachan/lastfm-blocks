@@ -26,11 +26,11 @@ fetchLastFmTracks( apiKey, username, numberOfTracks )
 	.then( ( tracks ) => {
 		root.render(
 			<TracksList
-				textAlign={ textAlign }
 				tracks={ tracks }
 				includeLinkToTrack={ includeLinkToTrack }
 				showTrackImage={ showTrackImage }
 				imageStyle={ imageStyle }
+				textAlign={ textAlign }
 			/>
 		);
 	} )
