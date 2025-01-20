@@ -18,7 +18,7 @@ const apiKey = tracksAttr.lastfmApikey;
 const username = tracksAttr.lastfmUsername;
 const numberOfTracks = tracksAttr.lastfmNumberoftracks;
 const includeLinkToTrack = 'true' === tracksAttr.lastfmIncludelinktotrack;
-const showTrackImage = 'true' === tracksAttr.lastfmShowtrackimage;
+const showTrackArtwork = 'true' === tracksAttr.lastfmShowtrackartwork;
 const imageStyle = tracksAttr.lastfmImagestyle;
 const textAlign = tracksAttr.lastfmTextalign;
 
@@ -28,7 +28,7 @@ fetchLastFmTracks( apiKey, username, numberOfTracks )
 			<TracksList
 				tracks={ tracks }
 				includeLinkToTrack={ includeLinkToTrack }
-				showTrackImage={ showTrackImage }
+				showTrackArtwork={ showTrackArtwork }
 				imageStyle={ imageStyle }
 				textAlign={ textAlign }
 			/>

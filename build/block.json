@@ -25,13 +25,13 @@
       "type": "string",
       "default": "1"
     },
-    "showTrackImage": {
+    "showTrackArtwork": {
       "type": "boolean",
       "default": false
     },
     "imageStyle": {
       "type": "string",
-      "default": "vinyl"
+      "default": "default"
     },
     "includeLinkToTrack": {
       "type": "boolean",

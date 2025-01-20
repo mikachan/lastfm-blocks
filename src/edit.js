@@ -33,7 +33,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		apiKey,
 		username,
 		numberOfTracks,
-		showTrackImage,
+		showTrackArtwork,
 		imageStyle,
 		includeLinkToTrack,
 		textAlign,
@@ -122,25 +122,26 @@ export default function Edit( { attributes, setAttributes } ) {
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
 						label={ __(
-							'Show track images',
+							'Show track artwork',
 							'lastfm-recently-played-block'
 						) }
-						checked={ showTrackImage }
+						checked={ showTrackArtwork }
 						onChange={ () =>
 							setAttributes( {
-								showTrackImage: ! showTrackImage,
+								showTrackArtwork: ! showTrackArtwork,
 							} )
 						}
 					/>
-					{ showTrackImage && (
+					{ showTrackArtwork && (
 						<SelectControl
 							__next40pxDefaultSize
 							label={ __(
 								'Image Style',
 								'lastfm-recently-played-block'
 							) }
-							value={ imageStyle || 'vinyl' }
+							value={ imageStyle || 'default' }
 							options={ [
+								{ label: 'Default', value: 'default' },
 								{ label: 'Vinyl', value: 'vinyl' },
 								{ label: 'Cassette', value: 'cassette' },
 								{ label: 'CD', value: 'cd' },
@@ -205,7 +206,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						) }
 						<TracksList
 							tracks={ tracks }
-							showTrackImage={ showTrackImage }
+							showTrackArtwork={ showTrackArtwork }
 							imageStyle={ imageStyle }
 							includeLinkToTrack={ includeLinkToTrack }
 							textAlign={ textAlign }

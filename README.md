@@ -2,9 +2,11 @@
 
 A WordPress block that displays tracks scrobbled from Last.fm. It uses the [Last.fm API](https://www.last.fm/api) to fetch the data, and requires a Last.fm username and valid API key.
 
-### Options
+### Block Settings
 
-- The number of tracks to display
+The block has the following settings:
+
+- The number of tracks to display (between 1-50)
 - Include album artwork
 - Choose between vinyl, cassette, or CD artwork
 - Include link to track on Last.fm

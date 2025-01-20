@@ -6,7 +6,7 @@ import { __ } from '@wordpress/i18n';
 export function TracksList( {
 	tracks,
 	includeLinkToTrack,
-	showTrackImage,
+	showTrackArtwork,
 	imageStyle,
 	textAlign,
 } ) {
@@ -38,7 +38,7 @@ export function TracksList( {
 			{ isTracksValid &&
 				tracks.map( ( track ) => (
 					<li key={ track.url }>
-						{ showTrackImage && (
+						{ showTrackArtwork && (
 							<div className={ `track-image ${ imageStyle }` }>
 								<TrackLinkTag url={ track.url }>
 									<span
@@ -49,7 +49,9 @@ export function TracksList( {
 											backgroundImage: `url(${ track.image[ 1 ][ '#text' ] })`,
 										} }
 									>
-										<span className="format" />
+										{ imageStyle !== 'default' && (
+											<span className="format" />
+										) }
 									</span>
 								</TrackLinkTag>
 							</div>
