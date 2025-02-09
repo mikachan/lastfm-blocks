@@ -1,5 +1,5 @@
 === Last.fm Blocks ===
-Contributors:      Sarah Norris
+Contributors:      mikachan
 Tags:              block, lastfm, last.fm, scrobble, music, recently played
 Tested up to:      6.7
 Stable tag:        1.0.0
