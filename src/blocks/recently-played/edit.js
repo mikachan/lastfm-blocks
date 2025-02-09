@@ -25,8 +25,8 @@ import { store as noticesStore } from '@wordpress/notices';
 /**
  * Internal dependencies
  */
-import { fetchLastFmTracks } from './lastfm-resolvers';
-import { TracksList } from './tracks-list';
+import { fetchLastFmTracks } from '../../api/lastfm-resolvers';
+import { TracksList } from '../../components/tracks-list';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const {
@@ -48,7 +48,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			createErrorNotice(
 				__(
 					'Please provide a valid Last.fm API key and username.',
-					'lastfm-recently-played-block'
+					'lastfm-blocks'
 				),
 				{
 					id: 'lastfm-recently-played-error',
@@ -87,15 +87,13 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody
-					title={ __( 'Display', 'lastfm-recently-played-block' ) }
-				>
+				<PanelBody title={ __( 'Display', 'lastfm-blocks' ) }>
 					<ToggleControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
 						label={ __(
 							'Include links to tracks',
-							'lastfm-recently-played-block'
+							'lastfm-blocks'
 						) }
 						checked={ includeLinkToTrack }
 						onChange={ () =>
@@ -109,10 +107,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						__next40pxDefaultSize
 						min={ 1 }
 						max={ 50 }
-						label={ __(
-							'Number of Tracks',
-							'lastfm-recently-played-block'
-						) }
+						label={ __( 'Number of Tracks', 'lastfm-blocks' ) }
 						value={ numberOfTracks || 1 }
 						onChange={ ( value ) =>
 							setAttributes( { numberOfTracks: value } )
@@ -121,10 +116,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<ToggleControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
-						label={ __(
-							'Show track artwork',
-							'lastfm-recently-played-block'
-						) }
+						label={ __( 'Show track artwork', 'lastfm-blocks' ) }
 						checked={ showTrackArtwork }
 						onChange={ () =>
 							setAttributes( {
@@ -135,10 +127,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					{ showTrackArtwork && (
 						<SelectControl
 							__next40pxDefaultSize
-							label={ __(
-								'Image Style',
-								'lastfm-recently-played-block'
-							) }
+							label={ __( 'Image Style', 'lastfm-blocks' ) }
 							value={ imageStyle || 'default' }
 							options={ [
 								{ label: 'Default', value: 'default' },
@@ -153,18 +142,12 @@ export default function Edit( { attributes, setAttributes } ) {
 					) }
 				</PanelBody>
 				<PanelBody
-					title={ __(
-						'Last.fm User Details',
-						'lastfm-recently-played-block'
-					) }
+					title={ __( 'Last.fm User Details', 'lastfm-blocks' ) }
 				>
 					<TextControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
-						label={ __(
-							'Last.fm Username',
-							'lastfm-recently-played-block'
-						) }
+						label={ __( 'Last.fm Username', 'lastfm-blocks' ) }
 						value={ username || '' }
 						onChange={ ( value ) =>
 							setAttributes( { username: value } )
@@ -173,13 +156,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					<TextControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
-						label={ __(
-							'Last.fm API Key',
-							'lastfm-recently-played-block'
-						) }
+						label={ __( 'Last.fm API Key', 'lastfm-blocks' ) }
 						help={ __(
 							'Create a last.fm API key at last.fm/api.',
-							'lastfm-recently-played-block'
+							'lastfm-blocks'
 						) }
 						value={ apiKey || '' }
 						onChange={ ( value ) =>

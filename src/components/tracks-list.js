@@ -32,7 +32,7 @@ export function TracksList( {
 		<ul className={ `tracks-list ${ `has-text-align-${ textAlign }` }` }>
 			{ ! isTracksValid && (
 				<li className="no-tracks-found">
-					{ __( 'No tracks found.', 'lastfm-recently-played-block' ) }
+					{ __( 'No tracks found.', 'lastfm-blocks' ) }
 				</li>
 			) }
 			{ isTracksValid &&

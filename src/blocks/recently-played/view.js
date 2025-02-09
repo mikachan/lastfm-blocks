@@ -6,11 +6,11 @@ import { createRoot } from '@wordpress/element';
 /**
  * Internal dependencies
  */
-import { fetchLastFmTracks } from './lastfm-resolvers';
-import { TracksList } from './tracks-list';
+import { fetchLastFmTracks } from '../../api/lastfm-resolvers';
+import { TracksList } from '../../components/tracks-list';
 
 const tracksListContainer = document.querySelector(
-	'.wp-block-lastfm-recently-played-block-lastfm-recently-played-block'
+	'.wp-block-lastfm-blocks-lastfm-recently-played-block'
 );
 const root = createRoot( tracksListContainer );
 const tracksAttr = tracksListContainer.dataset;

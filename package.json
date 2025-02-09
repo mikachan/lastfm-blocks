@@ -1,7 +1,7 @@
 {
-	"name": "lastfm-recently-played-block",
+	"name": "lastfm-blocks",
 	"version": "0.1.0",
-	"description": "A block that displays your most recently scrobbled tracks from Last.fm.",
+	"description": "A collection of blocks for Last.fm.",
 	"author": "Sarah Norris",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",

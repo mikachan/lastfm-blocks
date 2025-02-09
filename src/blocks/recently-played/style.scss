@@ -1,4 +1,4 @@
-.wp-block-lastfm-recently-played-block-lastfm-recently-played-block {
+.wp-block-lastfm-blocks-lastfm-recently-played-block {
 	.tracks-list {
 		margin: 0;
 		padding: 0;
@@ -63,13 +63,13 @@
 
 				&.vinyl {
 					.format {
-						background-image: url("images/vinyl.png");
+						background-image: url("../../images/vinyl.png");
 					}
 				}
 
 				&.cd {
 					.format {
-						background-image: url("images/cd.png");
+						background-image: url("../../images/cd.png");
 					}
 				}
 
@@ -82,7 +82,7 @@
 					}
 
 					.format {
-						background-image: url("images/cassette.png");
+						background-image: url("../../images/cassette.png");
 						right: -45%;
 					}
 				}

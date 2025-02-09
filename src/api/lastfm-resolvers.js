@@ -46,7 +46,7 @@ export async function fetchLastFmTracks(
 					// translators: %s: Last.fm username
 					__(
 						'No Last.fm tracks found from user "%s".',
-						'lastfm-recently-played-block'
+						'lastfm-blocks'
 					),
 					username
 				)

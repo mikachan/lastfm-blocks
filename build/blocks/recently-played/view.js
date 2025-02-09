@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/lastfm-resolvers.js":
-/*!*********************************!*\
-  !*** ./src/lastfm-resolvers.js ***!
-  \*********************************/
+/***/ "./src/api/lastfm-resolvers.js":
+/*!*************************************!*\
+  !*** ./src/api/lastfm-resolvers.js ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -47,7 +47,7 @@ async function fetchLastFmTracks(apiKey, username, numberOfTracks = '1') {
     if (data.recenttracks['@attr']?.total === '0') {
       throw new Error((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.sprintf)(
       // translators: %s: Last.fm username
-      (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No Last.fm tracks found from user "%s".', 'lastfm-recently-played-block'), username));
+      (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No Last.fm tracks found from user "%s".', 'lastfm-blocks'), username));
     }
     if (!data.recenttracks.track) {
       return [];
@@ -63,10 +63,10 @@ async function fetchLastFmTracks(apiKey, username, numberOfTracks = '1') {
 
 /***/ }),
 
-/***/ "./src/tracks-list.js":
-/*!****************************!*\
-  !*** ./src/tracks-list.js ***!
-  \****************************/
+/***/ "./src/components/tracks-list.js":
+/*!***************************************!*\
+  !*** ./src/components/tracks-list.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -112,7 +112,7 @@ function TracksList({
     className: `tracks-list ${`has-text-align-${textAlign}`}`,
     children: [!isTracksValid && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
       className: "no-tracks-found",
-      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No tracks found.', 'lastfm-recently-played-block')
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No tracks found.', 'lastfm-blocks')
     }), isTracksValid && tracks.map(track => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
       children: [showTrackArtwork && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: `track-image ${imageStyle}`,
@@ -247,14 +247,14 @@ module.exports = window["wp"]["i18n"];
 var __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
-/*!*********************!*\
-  !*** ./src/view.js ***!
-  \*********************/
+/*!********************************************!*\
+  !*** ./src/blocks/recently-played/view.js ***!
+  \********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _lastfm_resolvers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lastfm-resolvers */ "./src/lastfm-resolvers.js");
-/* harmony import */ var _tracks_list__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tracks-list */ "./src/tracks-list.js");
+/* harmony import */ var _api_lastfm_resolvers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/lastfm-resolvers */ "./src/api/lastfm-resolvers.js");
+/* harmony import */ var _components_tracks_list__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/tracks-list */ "./src/components/tracks-list.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 /**
@@ -268,7 +268,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const tracksListContainer = document.querySelector('.wp-block-lastfm-recently-played-block-lastfm-recently-played-block');
+const tracksListContainer = document.querySelector('.wp-block-lastfm-blocks-lastfm-recently-played-block');
 const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createRoot)(tracksListContainer);
 const tracksAttr = tracksListContainer.dataset;
 const apiKey = tracksAttr.lastfmApikey;
@@ -278,8 +278,8 @@ const includeLinkToTrack = 'true' === tracksAttr.lastfmIncludelinktotrack;
 const showTrackArtwork = 'true' === tracksAttr.lastfmShowtrackartwork;
 const imageStyle = tracksAttr.lastfmImagestyle;
 const textAlign = tracksAttr.lastfmTextalign;
-(0,_lastfm_resolvers__WEBPACK_IMPORTED_MODULE_1__.fetchLastFmTracks)(apiKey, username, numberOfTracks).then(tracks => {
-  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_tracks_list__WEBPACK_IMPORTED_MODULE_2__.TracksList, {
+(0,_api_lastfm_resolvers__WEBPACK_IMPORTED_MODULE_1__.fetchLastFmTracks)(apiKey, username, numberOfTracks).then(tracks => {
+  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_tracks_list__WEBPACK_IMPORTED_MODULE_2__.TracksList, {
     tracks: tracks,
     includeLinkToTrack: includeLinkToTrack,
     showTrackArtwork: showTrackArtwork,

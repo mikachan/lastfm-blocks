@@ -1,7 +1,7 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "lastfm-recently-played-block/lastfm-recently-played-block",
+	"name": "lastfm-blocks/lastfm-recently-played-block",
 	"version": "0.1.0",
 	"title": "Last.fm Recently Played Block",
 	"category": "widgets",
