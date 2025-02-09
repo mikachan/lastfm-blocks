@@ -6,8 +6,8 @@
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
-		"env:start": "npx @wp-now/wp-now start",
 		"build": "wp-scripts build --webpack-copy-php",
+		"env:start": "npx @wp-now/wp-now start",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:css:fix": "npm run lint:css -- --fix",
