@@ -17,16 +17,21 @@
 		"lint:php:fix": "composer run-script format",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start --webpack-copy-php"
+		"start": "wp-scripts start --webpack-copy-php",
+		"test:js": "wp-scripts test-unit-js",
+		"test:unit": "wp-scripts test-unit-js"
+	},
+	"jest": {
+		"testEnvironment": "jsdom"
 	},
 	"devDependencies": {
-		"@wordpress/browserslist-config": "^6.13.0",
-		"@wordpress/eslint-plugin": "^21.6.0",
-		"@wordpress/prettier-config": "^4.13.0",
-		"@wordpress/scripts": "^30.6.0",
-		"@wordpress/stylelint-config": "^23.5.0",
+		"@wordpress/browserslist-config": "^6.17.0",
+		"@wordpress/eslint-plugin": "^22.3.0",
+		"@wordpress/prettier-config": "^4.17.0",
+		"@wordpress/scripts": "^30.10.0",
+		"@wordpress/stylelint-config": "^23.9.0",
 		"ajv": "^8.17.1",
-		"eslint-plugin-prettier": "^5.2.1",
+		"eslint-plugin-prettier": "^5.2.3",
 		"eslint-plugin-react-compiler": "^19.0.0-beta-0dec889-20241115",
 		"eslint-plugin-unicorn": "^56.0.1",
 		"prettier": "npm:wp-prettier@3.0.3"
