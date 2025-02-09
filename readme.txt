@@ -12,9 +12,16 @@ A collection of blocks for Last.fm.
 
 A collection of WordPress blocks that use the Last.fm API to display data from a user's Last.fm account.
 
-Currently, the plugin includes the following blocks:
+The plugin includes the following blocks:
 
-- Recently Played Tracks
+*Recently Played Tracks*
+Display a list of the most recently played tracks from a Last.fm user.
+
+This block has the following settings:
+- Number of Tracks: The number of tracks to display.
+- Include Album Art: Whether to include the album art for each track.
+- Artwork Type: The type of artwork to display. Options are Vinyl Record, CD, and Cassette Tape.
+- Include Link to Track: Whether to include a link to the track on Last.fm.
 
 == Installation ==
 
@@ -24,30 +31,12 @@ e.g.
 
 1. Upload the plugin files to the `/wp-content/plugins/lastfm-blocks` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
-
-
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+3. Add your Last.fm username and API key in the block settings.
 
 == Changelog ==
 
-= 0.1.0 =
-* Release
+= 1.0.0 =
+* Initial release
 
 == Licenses ==
 
