@@ -1,16 +1,16 @@
-=== Last.fm Recently Played Block ===
+=== Last.fm Blocks ===
 Contributors:      Sarah Norris
-Tags:              block
+Tags:              block, lastfm, last.fm, scrobble, music, recently played
 Tested up to:      6.7
 Stable tag:        0.1.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Display your most recently played tracks from Last.fm.
+A collection of blocks for Last.fm.
 
 == Description ==
 
-Display your most recently played tracks from Last.fm. This plugin uses the Last.fm API to retrieve your most recently played tracks and display them in a block.
+A collection of WordPress blocks that use the Last.fm API to display data from a user's Last.fm account.
 
 == Installation ==
 

@@ -1,15 +1,20 @@
-# Last.fm Recently Played Block
+# Last.fm Blocks
 
-A WordPress block that displays tracks scrobbled from Last.fm. It uses the [Last.fm API](https://www.last.fm/api) to fetch the data, and requires a Last.fm username and valid API key.
+A collection of WordPress blocks that use the [Last.fm API](https://www.last.fm/api) to display data from a user's Last.fm account.
 
-### Block Settings
+### Blocks
 
-The block has the following settings:
+#### Recently Played Tracks
 
-- The number of tracks to display (between 1-50)
-- Include album artwork
-- Choose between vinyl, cassette, or CD artwork
-- Include link to track on Last.fm
+This block has the following settings:
+
+| Setting | Description | Type | Default |
+| --- | --- | --- | --- |
+| Username | The Last.fm username to fetch data for | string | `null` |
+| Number of Tracks | The number of tracks to display (between 1-50) | number | `10` |
+| Include Album Artwork | Whether to include album artwork | boolean | `true` |
+| Artwork Type | Choose between vinyl, cassette, or CD artwork | string | `vinyl` |
+| Include Link to Track | Whether to include a link to the track on Last.fm | boolean | `true` |
 
 ## Requirements
 
