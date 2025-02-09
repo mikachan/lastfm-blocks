@@ -17,6 +17,7 @@
 		"lint:php:fix": "composer run-script format",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
+		"prepare-plugin": "npm run build && npm run plugin-zip",
 		"start": "wp-scripts start --webpack-copy-php",
 		"test:js": "wp-scripts test-unit-js",
 		"test:unit": "wp-scripts test-unit-js"
@@ -39,5 +40,12 @@
 		"eslint-plugin-react-compiler": "^19.0.0-beta-0dec889-20241115",
 		"eslint-plugin-unicorn": "^56.0.1",
 		"prettier": "npm:wp-prettier@3.0.3"
-	}
+	},
+	"files": [
+		"build",
+		"lastfm-blocks.php",
+		"readme.txt",
+		"LICENSE",
+		".wordpress.org"
+	]
 }
