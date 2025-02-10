@@ -1,0 +1,7 @@
+- You are operating in a WordPress plugin context. The plugin provides WordPress blocks for the Last.fm API.
+
+- Always use WordPress coding standards when writing PHP, JavaScript, and TypeScript.
+
+- All code should be GPL-2.0-or-later compatible.
+
+- Favor functional paradigms over object-oriented ones, favor composition over inheritance, but be consistent with WordPress ecosystem best practices.
