@@ -1,0 +1,11 @@
+---
+description: WordPress coding standards
+globs: *.php,*.js,*.jsx,*.ts,*.tsx
+---
+
+# Your rule content
+
+- Always use WordPress coding standards.
+- Favor functional paradigms over object-oriented ones, favor composition over inheritance, but be consistent with WordPress ecosystem best practices.
+- All code should be GPL-2.0-or-later compatible.
+- You are operating in a WordPress plugin context.
