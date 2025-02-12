@@ -170,6 +170,34 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 			<div { ...useBlockProps() }>
 				{ isLoading && <Spinner /> }
+				{ ! isLoading && ( ! apiKey || ! username ) && (
+					<div className="lastfm-blocks-error">
+						<strong>
+							{ __(
+								'Error: Last.fm Recently Played Block',
+								'lastfm-blocks'
+							) }
+						</strong>
+						<p>
+							{ ! apiKey && (
+								<span>
+									{ __(
+										'Please provide a valid Last.fm API key.',
+										'lastfm-blocks'
+									) }
+								</span>
+							) }
+							{ ! username && (
+								<span>
+									{ __(
+										'Please provide a valid Last.fm username.',
+										'lastfm-blocks'
+									) }
+								</span>
+							) }
+						</p>
+					</div>
+				) }
 				{ ! isLoading && apiKey && username && (
 					<>
 						{ blockEditingMode === 'default' && (

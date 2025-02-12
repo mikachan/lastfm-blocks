@@ -1,4 +1,10 @@
 .wp-block-lastfm-blocks-lastfm-recently-played-block {
+	.lastfm-blocks-error {
+		background-color: #fef8ee;
+		border: 1px solid #f0b849;
+		padding: 1em;
+	}
+
 	.tracks-list {
 		margin: 0;
 		padding: 0;
