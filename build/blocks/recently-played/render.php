@@ -27,7 +27,7 @@
 		<li>
 			<?php
 			echo __(
-				'Recently played tracks loading…',
+				'No recently played tracks found.',
 				'lastfm-blocks'
 			);
 			?>
