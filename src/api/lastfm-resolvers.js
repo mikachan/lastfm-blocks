@@ -4,7 +4,7 @@
 import { __, sprintf } from '@wordpress/i18n';
 
 const LASTFM_API_URL = 'https://ws.audioscrobbler.com/2.0/';
-const LASTFM_METHOD = 'user.getrecenttracks';
+const LASTFM_RECENT_TRACKS_METHOD = 'user.getrecenttracks';
 
 /**
  * Fetches recent tracks from Last.fm API
@@ -31,7 +31,7 @@ export async function fetchLastFmTracks(
 
 	try {
 		const response = await fetch(
-			`${ LASTFM_API_URL }?method=${ LASTFM_METHOD }&user=${ username }&api_key=${ apiKey }&format=json&limit=${ limit }`
+			`${ LASTFM_API_URL }?method=${ LASTFM_RECENT_TRACKS_METHOD }&user=${ username }&api_key=${ apiKey }&format=json&limit=${ limit }`
 		);
 
 		const data = await response.json();
