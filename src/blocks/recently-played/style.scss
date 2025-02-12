@@ -44,6 +44,7 @@
 					background-repeat: no-repeat;
 					background-size: contain;
 					box-shadow: 2px 2px 4px 0px rgb(2, 2, 2);
+					z-index: 1;
 				}
 
 				&.default {
@@ -59,12 +60,11 @@
 				.format {
 					background-repeat: no-repeat;
 					background-size: cover;
-					z-index: -1;
+					z-index: 0;
 					position: absolute;
-					top: 0;
-					right: -50%;
-					width: 100%;
-					height: 100%;
+					right: -20%;
+					width: 80%;
+					height: 80%;
 				}
 
 				&.vinyl {
@@ -89,7 +89,8 @@
 
 					.format {
 						background-image: url("../../images/cassette.png");
-						right: -45%;
+						width: 100%;
+						height: 48%;
 					}
 				}
 			}

@@ -48,11 +48,10 @@ export function TracksList( {
 										style={ {
 											backgroundImage: `url(${ track.image[ 1 ][ '#text' ] })`,
 										} }
-									>
-										{ imageStyle !== 'default' && (
-											<span className="format" />
-										) }
-									</span>
+									/>
+									{ imageStyle !== 'default' && (
+										<span className="format" />
+									) }
 								</TrackLinkTag>
 							</div>
 						) }
