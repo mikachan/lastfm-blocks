@@ -59,12 +59,19 @@ if ( ! function_exists( 'lastfm_blocks_fetch_recent_tracks' ) ) {
 
 		if ( empty( $recent_tracks['track'] ) ) {
 			$tracks = array();
-		} elseif ( isset( $recent_tracks['track']['name'] ) || isset( $recent_tracks['track']['artist'] ) ) {
-			$tracks = array( $recent_tracks['track'] );
 		} else {
 			$tracks = $recent_tracks['track'];
+
+			if ( ! is_array( $tracks ) ) {
+				return array();
+			}
+
+			if ( isset( $tracks['name'] ) || isset( $tracks['artist'] ) ) {
+				$tracks = array( $tracks );
+			}
 		}
 
+		$tracks = array_filter( $tracks, 'is_array' );
 		$tracks = array_slice( $tracks, 0, $limit );
 		set_transient( $cache_key, $tracks, 5 * MINUTE_IN_SECONDS );
 
