@@ -76,7 +76,7 @@
 		},
 		"shadow": true
 	},
-	"textdomain": "lastfm-recently-played-block",
+	"textdomain": "lastfm-blocks",
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",
 	"render": "file:./render.php",
