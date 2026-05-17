@@ -27,7 +27,8 @@
 				width: 3em;
 				height: 3em;
 
-				a {
+				a,
+				.track-name {
 					display: flex;
 					align-items: center;
 					width: 100%;
