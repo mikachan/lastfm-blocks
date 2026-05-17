@@ -40,7 +40,7 @@ if ( ! function_exists( 'lastfm_blocks_fetch_recent_tracks' ) ) {
 			),
 			array(
 				'timeout'    => 8,
-				'user-agent' => 'Blocks-for-Last.fm/' . $user_agent_version . '; https://github.com/mikachan/lastfm-recently-played-block',
+				'user-agent' => 'Blocks-for-Last.fm/' . $user_agent_version . '; https://github.com/mikachan/lastfm-blocks',
 			)
 		);
 

@@ -48,7 +48,7 @@ Last.fm Privacy Policy: https://www.last.fm/legal/privacy
 == Source Code ==
 
 The distributed plugin includes compiled block assets in the `build` directory. The human-readable source code and build tools are available at:
-https://github.com/mikachan/lastfm-recently-played-block
+https://github.com/mikachan/lastfm-blocks
 
 To build the plugin assets from source, run `npm install` and `npm run build`.
 
