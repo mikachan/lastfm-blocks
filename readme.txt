@@ -1,6 +1,6 @@
 === Last.fm Blocks ===
 Contributors:      mikachan
-Tags:              block, lastfm, last.fm, scrobble, music, recently played
+Tags:              block, lastfm, scrobble, music, recently played
 Requires at least: 6.7
 Requires PHP:      7.2
 Tested up to:      6.7
