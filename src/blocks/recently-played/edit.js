@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import apiFetch from '@wordpress/api-fetch';
 import {
 	InspectorControls,
 	AlignmentControl,
@@ -18,19 +19,15 @@ import {
 	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
 	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
-import { useEffect, useState } from '@wordpress/element';
-import { useDispatch } from '@wordpress/data';
-import { store as noticesStore } from '@wordpress/notices';
+import { RawHTML, useEffect, useState } from '@wordpress/element';
 
 /**
  * Internal dependencies
  */
-import { fetchLastFmTracks } from '../../api/lastfm-resolvers';
-import { TracksList } from '../../components/tracks-list';
+import metadata from './block.json';
 
-export default function Edit( { attributes, clientId, setAttributes } ) {
+export default function Edit( { attributes, setAttributes } ) {
 	const {
-		apiKey,
 		username,
 		numberOfTracks,
 		showTrackArtwork,
@@ -39,60 +36,135 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		textAlign,
 	} = attributes;
 	const blockEditingMode = useBlockEditingMode();
+	const blockProps = useBlockProps();
 	const [ isLoading, setIsLoading ] = useState( false );
-	const [ tracks, setTracks ] = useState( [] );
-	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
-	const noticeId = `lastfm-recently-played-error-${ clientId }`;
+	const [ preview, setPreview ] = useState( '' );
+	const [ previewError, setPreviewError ] = useState( '' );
 
 	useEffect( () => {
-		if ( ! apiKey || ! username ) {
-			createErrorNotice(
-				__(
-					'Please provide a valid Last.fm API key and username.',
-					'lastfm-blocks'
-				),
-				{
-					id: noticeId,
-				}
-			);
+		let isMounted = true;
+
+		if ( ! username ) {
+			setIsLoading( false );
+			setPreview( '' );
+			setPreviewError( '' );
+
+			return () => {
+				isMounted = false;
+			};
 		}
 
-		if ( apiKey && username ) {
-			setIsLoading( true );
+		setIsLoading( true );
+		setPreviewError( '' );
 
-			fetchLastFmTracks( apiKey, username, numberOfTracks )
-				.then( ( data ) => {
-					setTracks( data );
-					removeNotice( noticeId );
-				} )
-				.catch( ( error ) => {
-					setTracks( [] );
-					createErrorNotice(
+		apiFetch( {
+			path: `/wp/v2/block-renderer/${ metadata.name }?context=edit`,
+			method: 'POST',
+			data: {
+				attributes: {
+					username,
+					numberOfTracks,
+					showTrackArtwork,
+					imageStyle,
+					includeLinkToTrack,
+					textAlign,
+				},
+			},
+		} )
+			.then( ( response ) => {
+				if ( isMounted ) {
+					setPreview( response?.rendered || '' );
+				}
+			} )
+			.catch( ( error ) => {
+				if ( isMounted ) {
+					setPreview( '' );
+					setPreviewError(
 						error?.message ||
 							__(
-								'Unable to fetch Last.fm tracks.',
+								'Unable to render Last.fm preview.',
 								'lastfm-blocks'
-							),
-						{
-							id: noticeId,
-						}
+							)
 					);
-				} )
-				.finally( () => {
+				}
+			} )
+			.finally( () => {
+				if ( isMounted ) {
 					setIsLoading( false );
-				} );
-		}
+				}
+			} );
+
+		return () => {
+			isMounted = false;
+		};
 	}, [
-		apiKey,
-		createErrorNotice,
-		noticeId,
+		imageStyle,
+		includeLinkToTrack,
 		numberOfTracks,
-		removeNotice,
+		showTrackArtwork,
+		textAlign,
 		username,
 	] );
 
+	const renderPreview = () => {
+		if ( ! username ) {
+			return (
+				<div className="lastfm-blocks-error">
+					<strong>
+						{ __(
+							'Error: Last.fm Recently Played Block',
+							'lastfm-blocks'
+						) }
+					</strong>
+					<p>
+						<span>
+							{ __(
+								'Please provide a valid Last.fm username.',
+								'lastfm-blocks'
+							) }
+						</span>
+					</p>
+				</div>
+			);
+		}
+
+		if ( isLoading ) {
+			return <Spinner />;
+		}
+
+		if ( previewError ) {
+			return (
+				<div className="lastfm-blocks-error">
+					<strong>
+						{ __(
+							'Error: Last.fm Recently Played Block',
+							'lastfm-blocks'
+						) }
+					</strong>
+					<p>
+						<span>{ previewError }</span>
+					</p>
+				</div>
+			);
+		}
+
+		return <RawHTML>{ preview }</RawHTML>;
+	};
+
 	return (
 		<>
+			{ blockEditingMode === 'default' && (
+				<BlockControls group="block">
+					<AlignmentControl
+						value={ textAlign }
+						onChange={ ( nextAlign ) => {
+							setAttributes( {
+								textAlign: nextAlign,
+							} );
+						} }
+					/>
+				</BlockControls>
+			) }
 			<InspectorControls>
 				<PanelBody title={ __( 'Display', 'lastfm-blocks' ) }>
 					<ToggleControl
@@ -155,80 +227,18 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
 						label={ __( 'Last.fm Username', 'lastfm-blocks' ) }
+						help={ __(
+							'Set the API key in Settings > Last.fm Blocks.',
+							'lastfm-blocks'
+						) }
 						value={ username || '' }
 						onChange={ ( value ) =>
 							setAttributes( { username: value } )
 						}
 					/>
-					<TextControl
-						__nextHasNoMarginBottom
-						__next40pxDefaultSize
-						label={ __( 'Last.fm API Key', 'lastfm-blocks' ) }
-						help={ __(
-							'Create a last.fm API key at last.fm/api.',
-							'lastfm-blocks'
-						) }
-						value={ apiKey || '' }
-						onChange={ ( value ) =>
-							setAttributes( { apiKey: value } )
-						}
-					/>
 				</PanelBody>
 			</InspectorControls>
-			<div { ...useBlockProps() }>
-				{ isLoading && <Spinner /> }
-				{ ! isLoading && ( ! apiKey || ! username ) && (
-					<div className="lastfm-blocks-error">
-						<strong>
-							{ __(
-								'Error: Last.fm Recently Played Block',
-								'lastfm-blocks'
-							) }
-						</strong>
-						<p>
-							{ ! apiKey && (
-								<span>
-									{ __(
-										'Please provide a valid Last.fm API key.',
-										'lastfm-blocks'
-									) }
-								</span>
-							) }
-							{ ! username && (
-								<span>
-									{ __(
-										'Please provide a valid Last.fm username.',
-										'lastfm-blocks'
-									) }
-								</span>
-							) }
-						</p>
-					</div>
-				) }
-				{ ! isLoading && apiKey && username && (
-					<>
-						{ blockEditingMode === 'default' && (
-							<BlockControls group="block">
-								<AlignmentControl
-									value={ textAlign }
-									onChange={ ( nextAlign ) => {
-										setAttributes( {
-											textAlign: nextAlign,
-										} );
-									} }
-								/>
-							</BlockControls>
-						) }
-						<TracksList
-							tracks={ tracks }
-							showTrackArtwork={ showTrackArtwork }
-							imageStyle={ imageStyle }
-							includeLinkToTrack={ includeLinkToTrack }
-							textAlign={ textAlign }
-						/>
-					</>
-				) }
-			</div>
+			<div { ...blockProps }>{ renderPreview() }</div>
 		</>
 	);
 }

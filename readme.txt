@@ -21,11 +21,12 @@ Display a list of the most recently played tracks from a Last.fm user.
 
 This block has the following settings:
 - Last.fm Username: The Last.fm username to fetch data for.
-- Last.fm API Key: The Last.fm API key to use for requests.
 - Number of Tracks: The number of tracks to display. Defaults to 1.
 - Include Album Art: Whether to include the album art for each track. Disabled by default.
 - Artwork Type: The type of artwork to display. Options are Default, Vinyl Record, CD, and Cassette Tape.
 - Include Link to Track: Whether to include a link to the track on Last.fm.
+
+Set the Last.fm API key once in Settings > Last.fm Blocks.
 
 == Installation ==
 
@@ -35,7 +36,8 @@ e.g.
 
 1. Upload the plugin files to the `/wp-content/plugins/lastfm-blocks` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Add your Last.fm username and API key in the block settings.
+3. Add your Last.fm API key in Settings > Last.fm Blocks.
+4. Add your Last.fm username in the block settings.
 
 == Changelog ==
 

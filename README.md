@@ -11,11 +11,12 @@ This block has the following settings:
 | Setting | Description | Type | Default |
 | --- | --- | --- | --- |
 | Username | The Last.fm username to fetch data for | string | `null` |
-| API Key | The Last.fm API key to use for requests | string | `null` |
 | Number of Tracks | The number of tracks to display (between 1-50) | number | `1` |
 | Include Album Artwork | Whether to include album artwork | boolean | `false` |
 | Artwork Type | Choose between default, vinyl, cassette, or CD artwork | string | `default` |
 | Include Link to Track | Whether to include a link to the track on Last.fm | boolean | `true` |
+
+Set the Last.fm API key once in Settings > Last.fm Blocks.
 
 ## Requirements
 

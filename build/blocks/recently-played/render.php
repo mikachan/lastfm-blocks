@@ -140,7 +140,7 @@ if ( ! function_exists( 'lastfm_blocks_get_track_artwork_url' ) ) {
 	}
 }
 
-$api_key               = isset( $attributes['apiKey'] ) ? sanitize_text_field( $attributes['apiKey'] ) : '';
+$api_key               = function_exists( 'lastfm_blocks_get_api_key' ) ? lastfm_blocks_get_api_key() : '';
 $username              = isset( $attributes['username'] ) ? sanitize_text_field( $attributes['username'] ) : '';
 $number_of_tracks      = isset( $attributes['numberOfTracks'] ) ? absint( $attributes['numberOfTracks'] ) : 1;
 $include_link_to_track = ! empty( $attributes['includeLinkToTrack'] );
