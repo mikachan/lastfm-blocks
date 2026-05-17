@@ -30,12 +30,8 @@ Set the Last.fm API key once in Settings > Last.fm Blocks.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
 1. Upload the plugin files to the `/wp-content/plugins/lastfm-blocks` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress
+2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Add your Last.fm API key in Settings > Last.fm Blocks.
 4. Add your Last.fm username in the block settings.
 
