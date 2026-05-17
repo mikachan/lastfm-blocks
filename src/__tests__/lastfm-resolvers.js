@@ -3,7 +3,7 @@
 /**
  * Internal dependencies
  */
-import { fetchLastFmTracks } from '../lastfm-resolvers';
+import { fetchLastFmTracks } from '../api/lastfm-resolvers';
 
 describe( 'fetchLastFmTracks', () => {
 	beforeEach( () => {
