@@ -115,6 +115,28 @@ function lastfm_blocks_render_settings_page() {
 	<?php
 }
 
+/**
+ * Add a settings link to the plugins list.
+ *
+ * @param array $actions Plugin action links.
+ * @return array
+ */
+function lastfm_blocks_add_settings_action_link( $actions ) {
+	$settings_link = sprintf(
+		'<a href="%s">%s</a>',
+		esc_url( admin_url( 'options-general.php?page=lastfm-blocks' ) ),
+		esc_html__( 'Settings', 'lastfm-blocks' )
+	);
+
+	return array_merge(
+		array(
+			'settings' => $settings_link,
+		),
+		$actions
+	);
+}
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'lastfm_blocks_add_settings_action_link' );
+
 add_filter(
 	'block_categories_all',
 	function ( $categories ) {
