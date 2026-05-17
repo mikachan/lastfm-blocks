@@ -11,15 +11,16 @@ This block has the following settings:
 | Setting | Description | Type | Default |
 | --- | --- | --- | --- |
 | Username | The Last.fm username to fetch data for | string | `null` |
-| Number of Tracks | The number of tracks to display (between 1-50) | number | `10` |
-| Include Album Artwork | Whether to include album artwork | boolean | `true` |
-| Artwork Type | Choose between vinyl, cassette, or CD artwork | string | `vinyl` |
+| API Key | The Last.fm API key to use for requests | string | `null` |
+| Number of Tracks | The number of tracks to display (between 1-50) | number | `1` |
+| Include Album Artwork | Whether to include album artwork | boolean | `false` |
+| Artwork Type | Choose between default, vinyl, cassette, or CD artwork | string | `default` |
 | Include Link to Track | Whether to include a link to the track on Last.fm | boolean | `true` |
 
 ## Requirements
 
 - WordPress 6.7+
-- PHP 7.4+
+- PHP 7.2+
 
 ## Development
 

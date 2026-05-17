@@ -1,6 +1,8 @@
 === Last.fm Blocks ===
 Contributors:      mikachan
 Tags:              block, lastfm, last.fm, scrobble, music, recently played
+Requires at least: 6.7
+Requires PHP:      7.2
 Tested up to:      6.7
 Stable tag:        1.0.0
 License:           GPL-2.0-or-later
@@ -18,9 +20,11 @@ The plugin includes the following blocks:
 Display a list of the most recently played tracks from a Last.fm user.
 
 This block has the following settings:
-- Number of Tracks: The number of tracks to display.
-- Include Album Art: Whether to include the album art for each track.
-- Artwork Type: The type of artwork to display. Options are Vinyl Record, CD, and Cassette Tape.
+- Last.fm Username: The Last.fm username to fetch data for.
+- Last.fm API Key: The Last.fm API key to use for requests.
+- Number of Tracks: The number of tracks to display. Defaults to 1.
+- Include Album Art: Whether to include the album art for each track. Disabled by default.
+- Artwork Type: The type of artwork to display. Options are Default, Vinyl Record, CD, and Cassette Tape.
 - Include Link to Track: Whether to include a link to the track on Last.fm.
 
 == Installation ==
