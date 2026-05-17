@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+	<title id="title">Blocks for Last.fm icon</title>
+	<desc id="desc">A grid of blocks next to audio-level bars.</desc>
+	<rect width="512" height="512" fill="#18252f" />
+	<circle cx="408" cy="128" r="146" fill="#203644" opacity="0.7" />
+	<circle cx="96" cy="416" r="124" fill="#12202a" opacity="0.85" />
+	<g transform="translate(78 102)">
+		<rect width="104" height="104" rx="24" fill="#5eead4" />
+		<rect x="128" width="104" height="104" rx="24" fill="#f8fafc" />
+		<rect y="128" width="104" height="104" rx="24" fill="#facc15" />
+		<rect x="128" y="128" width="104" height="104" rx="24" fill="#2dd4bf" />
+	</g>
+	<g fill="#f8fafc">
+		<rect x="354" y="198" width="20" height="116" rx="10" />
+		<rect x="390" y="158" width="20" height="196" rx="10" />
+		<rect x="426" y="214" width="20" height="84" rx="10" />
+	</g>
+	<rect x="462" y="178" width="20" height="156" rx="10" fill="#facc15" />
+	<path d="M78 382h356" fill="none" stroke="#5eead4" stroke-width="18" stroke-linecap="round" />
+</svg>
