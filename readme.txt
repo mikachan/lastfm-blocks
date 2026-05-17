@@ -32,7 +32,7 @@ Set the Last.fm API key once in Settings > Blocks for Last.fm.
 
 This plugin connects to the Last.fm API to fetch recently played track data. When a page containing the Recently Played Tracks block is rendered, the plugin sends the saved Last.fm API key, the configured Last.fm username, and the requested number of tracks to `https://ws.audioscrobbler.com/2.0/`.
 
-The response can include track names, artist names, Last.fm track URLs, and artwork URLs. Responses are cached in WordPress transients for five minutes. The plugin stores the Last.fm API key in the WordPress options table and stores the Last.fm username in block attributes.
+The response can include track names, artist names, Last.fm track URLs, and artwork URLs. When track artwork is enabled, visitors' browsers may request the returned artwork image URLs directly. Responses are cached in WordPress transients for five minutes. The plugin stores the Last.fm API key in the WordPress options table and stores the Last.fm username in block attributes.
 
 Last.fm API documentation: https://www.last.fm/api
 Last.fm API Terms of Service: https://www.last.fm/api/tos
