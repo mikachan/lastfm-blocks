@@ -30,9 +30,20 @@ export async function fetchLastFmTracks(
 	}
 
 	try {
-		const response = await fetch(
-			`${ LASTFM_API_URL }?method=${ LASTFM_RECENT_TRACKS_METHOD }&user=${ username }&api_key=${ apiKey }&format=json&limit=${ limit }`
-		);
+		const query = new URLSearchParams( {
+			method: LASTFM_RECENT_TRACKS_METHOD,
+			user: username,
+			api_key: apiKey,
+			format: 'json',
+			limit: limit.toString(),
+		} );
+		const response = await fetch( `${ LASTFM_API_URL }?${ query }` );
+
+		if ( response.ok === false ) {
+			throw new Error(
+				__( 'Unable to fetch Last.fm tracks.', 'lastfm-blocks' )
+			);
+		}
 
 		const data = await response.json();
 

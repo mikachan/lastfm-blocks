@@ -32,6 +32,28 @@ describe( 'fetchLastFmTracks', () => {
 		expect( global.fetch ).toHaveBeenCalledTimes( 1 );
 	} );
 
+	it( 'should encode API request params', async () => {
+		global.fetch.mockResolvedValueOnce( {
+			json: () =>
+				Promise.resolve( {
+					recenttracks: {
+						track: [],
+						'@attr': { total: '1' },
+					},
+				} ),
+		} );
+
+		await fetchLastFmTracks( 'api key', 'user/name', '2' );
+
+		const requestUrl = new URL( global.fetch.mock.calls[ 0 ][ 0 ] );
+		expect( requestUrl.searchParams.get( 'method' ) ).toBe(
+			'user.getrecenttracks'
+		);
+		expect( requestUrl.searchParams.get( 'api_key' ) ).toBe( 'api key' );
+		expect( requestUrl.searchParams.get( 'user' ) ).toBe( 'user/name' );
+		expect( requestUrl.searchParams.get( 'limit' ) ).toBe( '2' );
+	} );
+
 	it( 'should throw error for missing credentials', async () => {
 		await expect( fetchLastFmTracks( '', 'username' ) ).rejects.toThrow(
 			'API key and username are required'
@@ -62,6 +84,17 @@ describe( 'fetchLastFmTracks', () => {
 		await expect(
 			fetchLastFmTracks( 'invalid-key', 'username' )
 		).rejects.toThrow( 'Invalid parameters' );
+	} );
+
+	it( 'should handle HTTP errors', async () => {
+		global.fetch.mockResolvedValueOnce( {
+			ok: false,
+			json: () => Promise.resolve( {} ),
+		} );
+
+		await expect(
+			fetchLastFmTracks( 'api-key', 'username' )
+		).rejects.toThrow( 'Unable to fetch Last.fm tracks.' );
 	} );
 
 	it( 'should handle no tracks found', async () => {
