@@ -126,6 +126,23 @@ describe( 'fetchLastFmTracks', () => {
 		expect( tracks ).toEqual( [] );
 	} );
 
+	it( 'should normalize a single track response to an array', async () => {
+		const mockTrack = { name: 'Track 1', artist: { '#text': 'Artist 1' } };
+
+		global.fetch.mockResolvedValueOnce( {
+			json: () =>
+				Promise.resolve( {
+					recenttracks: {
+						track: mockTrack,
+						'@attr': { total: '1' },
+					},
+				} ),
+		} );
+
+		const tracks = await fetchLastFmTracks( 'api-key', 'username' );
+		expect( tracks ).toEqual( [ mockTrack ] );
+	} );
+
 	it( 'should limit number of tracks to requested amount', async () => {
 		const mockTracks = [
 			{ name: 'Track 1' },

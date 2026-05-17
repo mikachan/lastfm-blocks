@@ -68,7 +68,9 @@ export async function fetchLastFmTracks(
 			return [];
 		}
 
-		const tracks = data.recenttracks.track;
+		const tracks = Array.isArray( data.recenttracks.track )
+			? data.recenttracks.track
+			: [ data.recenttracks.track ];
 		// Ensure we don't return more tracks than requested
 		// Sometimes the API returns an extra track
 		return tracks.slice( 0, limit );
