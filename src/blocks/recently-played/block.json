@@ -4,7 +4,7 @@
 	"name": "lastfm-blocks/lastfm-recently-played-block",
 	"version": "0.1.0",
 	"title": "Last.fm Recently Played Block",
-	"category": "widgets",
+	"category": "lastfm-blocks",
 	"icon": "playlist-audio",
 	"description": "Display your most recently played tracks scrobbled from Last.fm.",
 	"keywords": [ "music", "sound" ],
