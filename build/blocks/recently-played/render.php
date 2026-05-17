@@ -4,7 +4,9 @@
  *
  * @var array $attributes
  */
-$attributes = isset( $attributes ) ? $attributes : array();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'lastfm_blocks_fetch_recent_tracks' ) ) {
 	/**
@@ -146,73 +148,89 @@ if ( ! function_exists( 'lastfm_blocks_get_track_artwork_url' ) ) {
 	}
 }
 
-$api_key               = function_exists( 'lastfm_blocks_get_api_key' ) ? lastfm_blocks_get_api_key() : '';
-$username              = isset( $attributes['username'] ) ? sanitize_text_field( $attributes['username'] ) : '';
-$number_of_tracks      = isset( $attributes['numberOfTracks'] ) ? absint( $attributes['numberOfTracks'] ) : 1;
-$include_link_to_track = ! empty( $attributes['includeLinkToTrack'] );
-$show_track_artwork    = ! empty( $attributes['showTrackArtwork'] );
-$image_style           = isset( $attributes['imageStyle'] ) ? sanitize_key( $attributes['imageStyle'] ) : 'default';
-$text_align            = isset( $attributes['textAlign'] ) ? sanitize_key( $attributes['textAlign'] ) : 'left';
+if ( ! function_exists( 'lastfm_blocks_render_recently_played_tracks' ) ) {
+	/**
+	 * Render recently played tracks block markup.
+	 *
+	 * @param array $attributes Block attributes.
+	 */
+	function lastfm_blocks_render_recently_played_tracks( $attributes ) {
+		$attributes            = is_array( $attributes ) ? $attributes : array();
+		$api_key               = function_exists( 'lastfm_blocks_get_api_key' ) ? lastfm_blocks_get_api_key() : '';
+		$username              = isset( $attributes['username'] ) ? sanitize_text_field( $attributes['username'] ) : '';
+		$number_of_tracks      = isset( $attributes['numberOfTracks'] ) ? absint( $attributes['numberOfTracks'] ) : 1;
+		$include_link_to_track = ! empty( $attributes['includeLinkToTrack'] );
+		$show_track_artwork    = ! empty( $attributes['showTrackArtwork'] );
+		$image_style           = isset( $attributes['imageStyle'] ) ? sanitize_key( $attributes['imageStyle'] ) : 'default';
+		$text_align            = isset( $attributes['textAlign'] ) ? sanitize_key( $attributes['textAlign'] ) : 'left';
 
-$number_of_tracks = max( 1, min( $number_of_tracks, 50 ) );
-$image_style      = in_array( $image_style, array( 'default', 'vinyl', 'cassette', 'cd' ), true ) ? $image_style : 'default';
-$text_align       = in_array( $text_align, array( 'left', 'center', 'right' ), true ) ? $text_align : 'left';
-$tracks           = ( $api_key && $username ) ? lastfm_blocks_fetch_recent_tracks( $api_key, $username, $number_of_tracks ) : array();
-?>
+		$number_of_tracks = max( 1, min( $number_of_tracks, 50 ) );
+		$image_style      = in_array( $image_style, array( 'default', 'vinyl', 'cassette', 'cd' ), true ) ? $image_style : 'default';
+		$text_align       = in_array( $text_align, array( 'left', 'center', 'right' ), true ) ? $text_align : 'left';
+		$tracks           = ( $api_key && $username ) ? lastfm_blocks_fetch_recent_tracks( $api_key, $username, $number_of_tracks ) : array();
+		?>
 
-<div <?php echo get_block_wrapper_attributes(); ?>>
-	<ul class="<?php echo esc_attr( 'tracks-list has-text-align-' . $text_align ); ?>">
-		<?php if ( empty( $tracks ) ) : ?>
-			<li class="no-tracks-found">
-				<?php esc_html_e( 'No recently played tracks found.', 'blocks-for-lastfm' ); ?>
-			</li>
-		<?php else : ?>
-			<?php foreach ( $tracks as $track ) : ?>
-				<?php
-				$track_name  = lastfm_blocks_get_track_name( $track );
-				$artist_name = lastfm_blocks_get_track_artist_name( $track );
-				$track_url   = isset( $track['url'] ) ? esc_url_raw( $track['url'] ) : '';
-				$artwork_url = lastfm_blocks_get_track_artwork_url( $track );
-				?>
-				<li>
-					<?php if ( $show_track_artwork ) : ?>
-						<div class="<?php echo esc_attr( 'track-image ' . $image_style ); ?>">
-							<?php if ( $include_link_to_track && $track_url ) : ?>
-								<a href="<?php echo esc_url( $track_url ); ?>" target="_blank" rel="noreferrer noopener" class="track-name">
-							<?php else : ?>
-								<span class="track-name">
-							<?php endif; ?>
-									<span
-										class="artwork"
-										role="img"
-										aria-label="<?php echo esc_attr( sprintf( '%s - %s', $artist_name, $track_name ) ); ?>"
-										<?php if ( $artwork_url ) : ?>
-											style="<?php echo esc_attr( 'background-image: url(' . esc_url( $artwork_url ) . ');' ); ?>"
-										<?php endif; ?>
-									></span>
-									<?php if ( 'default' !== $image_style ) : ?>
-										<span class="format"></span>
+		<div <?php echo get_block_wrapper_attributes(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WordPress escapes block wrapper attributes. ?>>
+			<ul class="<?php echo esc_attr( 'tracks-list has-text-align-' . $text_align ); ?>">
+				<?php if ( empty( $tracks ) ) : ?>
+					<li class="no-tracks-found">
+						<?php esc_html_e( 'No recently played tracks found.', 'blocks-for-lastfm' ); ?>
+					</li>
+				<?php else : ?>
+					<?php foreach ( $tracks as $track ) : ?>
+						<?php
+						$track_name  = lastfm_blocks_get_track_name( $track );
+						$artist_name = lastfm_blocks_get_track_artist_name( $track );
+						$track_url   = isset( $track['url'] ) ? esc_url_raw( $track['url'] ) : '';
+						$artwork_url = lastfm_blocks_get_track_artwork_url( $track );
+						?>
+						<li>
+							<?php if ( $show_track_artwork ) : ?>
+								<div class="<?php echo esc_attr( 'track-image ' . $image_style ); ?>">
+									<?php if ( $include_link_to_track && $track_url ) : ?>
+										<a href="<?php echo esc_url( $track_url ); ?>" target="_blank" rel="noreferrer noopener" class="track-name">
+									<?php else : ?>
+										<span class="track-name">
 									<?php endif; ?>
-							<?php if ( $include_link_to_track && $track_url ) : ?>
-								</a>
-							<?php else : ?>
-								</span>
+											<span
+												class="artwork"
+												role="img"
+												aria-label="<?php echo esc_attr( sprintf( '%s - %s', $artist_name, $track_name ) ); ?>"
+												<?php if ( $artwork_url ) : ?>
+													style="<?php echo esc_attr( 'background-image: url(' . esc_url( $artwork_url ) . ');' ); ?>"
+												<?php endif; ?>
+											></span>
+											<?php if ( 'default' !== $image_style ) : ?>
+												<span class="format"></span>
+											<?php endif; ?>
+									<?php if ( $include_link_to_track && $track_url ) : ?>
+										</a>
+									<?php else : ?>
+										</span>
+									<?php endif; ?>
+								</div>
 							<?php endif; ?>
-						</div>
-					<?php endif; ?>
-					<div class="track-info">
-						<?php if ( $include_link_to_track && $track_url ) : ?>
-							<a href="<?php echo esc_url( $track_url ); ?>" target="_blank" rel="noreferrer noopener" class="track-name">
-								<?php echo esc_html( $track_name ); ?>
-							</a>
-						<?php else : ?>
-							<span class="track-name"><?php echo esc_html( $track_name ); ?></span>
-						<?php endif; ?>
-						<br />
-						<span class="artist-name"><?php echo esc_html( $artist_name ); ?></span>
-					</div>
-				</li>
-			<?php endforeach; ?>
-		<?php endif; ?>
-	</ul>
-</div>
+							<div class="track-info">
+								<?php if ( $include_link_to_track && $track_url ) : ?>
+									<a href="<?php echo esc_url( $track_url ); ?>" target="_blank" rel="noreferrer noopener" class="track-name">
+										<?php echo esc_html( $track_name ); ?>
+									</a>
+								<?php else : ?>
+									<span class="track-name"><?php echo esc_html( $track_name ); ?></span>
+								<?php endif; ?>
+								<br />
+								<span class="artist-name"><?php echo esc_html( $artist_name ); ?></span>
+							</div>
+						</li>
+					<?php endforeach; ?>
+				<?php endif; ?>
+			</ul>
+		</div>
+		<?php
+	}
+}
+
+$lastfm_blocks_defined_vars = get_defined_vars();
+$lastfm_blocks_attributes   = isset( $lastfm_blocks_defined_vars['attributes'] ) && is_array( $lastfm_blocks_defined_vars['attributes'] ) ? $lastfm_blocks_defined_vars['attributes'] : array();
+
+lastfm_blocks_render_recently_played_tracks( $lastfm_blocks_attributes );
