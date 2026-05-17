@@ -8,7 +8,7 @@
  * Author:            Sarah Norris
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       blocks-for-lastfm
+ * Text Domain:       blocks-for-last-fm
  *
  * @package BlocksForLastfm
  */
@@ -50,16 +50,16 @@ function lastfm_blocks_register_settings() {
 
 	add_settings_section(
 		'lastfm_blocks_api_settings',
-		__( 'Last.fm API', 'blocks-for-lastfm' ),
+		__( 'Last.fm API', 'blocks-for-last-fm' ),
 		'__return_null',
-		'blocks-for-lastfm'
+		'blocks-for-last-fm'
 	);
 
 	add_settings_field(
 		LASTFM_BLOCKS_API_KEY_OPTION,
-		__( 'API Key', 'blocks-for-lastfm' ),
+		__( 'API Key', 'blocks-for-last-fm' ),
 		'lastfm_blocks_render_api_key_field',
-		'blocks-for-lastfm',
+		'blocks-for-last-fm',
 		'lastfm_blocks_api_settings'
 	);
 }
@@ -79,7 +79,7 @@ function lastfm_blocks_render_api_key_field() {
 		autocomplete="off"
 	/>
 	<p class="description">
-		<?php esc_html_e( 'Create a Last.fm API key at last.fm/api and save it here once for every block in this plugin.', 'blocks-for-lastfm' ); ?>
+		<?php esc_html_e( 'Create a Last.fm API key at last.fm/api and save it here once for every block in this plugin.', 'blocks-for-last-fm' ); ?>
 	</p>
 	<?php
 }
@@ -89,10 +89,10 @@ function lastfm_blocks_render_api_key_field() {
  */
 function lastfm_blocks_add_settings_page() {
 	add_options_page(
-		__( 'Blocks for Last.fm', 'blocks-for-lastfm' ),
-		__( 'Blocks for Last.fm', 'blocks-for-lastfm' ),
+		__( 'Blocks for Last.fm', 'blocks-for-last-fm' ),
+		__( 'Blocks for Last.fm', 'blocks-for-last-fm' ),
 		'manage_options',
-		'blocks-for-lastfm',
+		'blocks-for-last-fm',
 		'lastfm_blocks_render_settings_page'
 	);
 }
@@ -104,11 +104,11 @@ add_action( 'admin_menu', 'lastfm_blocks_add_settings_page' );
 function lastfm_blocks_render_settings_page() {
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Blocks for Last.fm', 'blocks-for-lastfm' ); ?></h1>
+		<h1><?php esc_html_e( 'Blocks for Last.fm', 'blocks-for-last-fm' ); ?></h1>
 		<form action="options.php" method="post">
 			<?php
 			settings_fields( 'lastfm_blocks_settings' );
-			do_settings_sections( 'blocks-for-lastfm' );
+			do_settings_sections( 'blocks-for-last-fm' );
 			submit_button();
 			?>
 		</form>
@@ -125,8 +125,8 @@ function lastfm_blocks_render_settings_page() {
 function lastfm_blocks_add_settings_action_link( $actions ) {
 	$settings_link = sprintf(
 		'<a href="%s">%s</a>',
-		esc_url( admin_url( 'options-general.php?page=blocks-for-lastfm' ) ),
-		esc_html__( 'Settings', 'blocks-for-lastfm' )
+		esc_url( admin_url( 'options-general.php?page=blocks-for-last-fm' ) ),
+		esc_html__( 'Settings', 'blocks-for-last-fm' )
 	);
 
 	return array_merge(
@@ -143,12 +143,12 @@ add_filter(
 	function ( $categories ) {
 		$category_slugs = wp_list_pluck( $categories, 'slug' );
 
-		return in_array( 'blocks-for-lastfm', $category_slugs, true ) ? $categories : array_merge(
+		return in_array( 'blocks-for-last-fm', $category_slugs, true ) ? $categories : array_merge(
 			$categories,
 			array(
 				array(
-					'slug'  => 'blocks-for-lastfm',
-					'title' => __( 'Blocks for Last.fm', 'blocks-for-lastfm' ),
+					'slug'  => 'blocks-for-last-fm',
+					'title' => __( 'Blocks for Last.fm', 'blocks-for-last-fm' ),
 					'icon'  => 'playlist-audio',
 				),
 			)

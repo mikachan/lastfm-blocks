@@ -96,7 +96,7 @@ if ( ! function_exists( 'lastfm_blocks_get_track_name' ) ) {
 			return sanitize_text_field( $track['name'] );
 		}
 
-		return __( 'Unknown track', 'blocks-for-lastfm' );
+		return __( 'Unknown track', 'blocks-for-last-fm' );
 	}
 }
 
@@ -116,7 +116,7 @@ if ( ! function_exists( 'lastfm_blocks_get_track_artist_name' ) ) {
 			return sanitize_text_field( $track['artist'] );
 		}
 
-		return __( 'Unknown artist', 'blocks-for-lastfm' );
+			return __( 'Unknown artist', 'blocks-for-last-fm' );
 	}
 }
 
@@ -174,7 +174,7 @@ if ( ! function_exists( 'lastfm_blocks_render_recently_played_tracks' ) ) {
 			<ul class="<?php echo esc_attr( 'tracks-list has-text-align-' . $text_align ); ?>">
 				<?php if ( empty( $tracks ) ) : ?>
 					<li class="no-tracks-found">
-						<?php esc_html_e( 'No recently played tracks found.', 'blocks-for-lastfm' ); ?>
+						<?php esc_html_e( 'No recently played tracks found.', 'blocks-for-last-fm' ); ?>
 					</li>
 				<?php else : ?>
 					<?php foreach ( $tracks as $track ) : ?>

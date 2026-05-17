@@ -83,7 +83,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						error?.message ||
 							__(
 								'Unable to render Last.fm preview.',
-								'blocks-for-lastfm'
+								'blocks-for-last-fm'
 							)
 					);
 				}
@@ -109,18 +109,18 @@ export default function Edit( { attributes, setAttributes } ) {
 	const renderPreview = () => {
 		if ( ! username ) {
 			return (
-				<div className="blocks-for-lastfm-error">
+				<div className="blocks-for-last-fm-error">
 					<strong>
 						{ __(
 							'Error: Recently Played Tracks',
-							'blocks-for-lastfm'
+							'blocks-for-last-fm'
 						) }
 					</strong>
 					<p>
 						<span>
 							{ __(
 								'Please provide a valid Last.fm username.',
-								'blocks-for-lastfm'
+								'blocks-for-last-fm'
 							) }
 						</span>
 					</p>
@@ -134,11 +134,11 @@ export default function Edit( { attributes, setAttributes } ) {
 
 		if ( previewError ) {
 			return (
-				<div className="blocks-for-lastfm-error">
+				<div className="blocks-for-last-fm-error">
 					<strong>
 						{ __(
 							'Error: Recently Played Tracks',
-							'blocks-for-lastfm'
+							'blocks-for-last-fm'
 						) }
 					</strong>
 					<p>
@@ -166,13 +166,13 @@ export default function Edit( { attributes, setAttributes } ) {
 				</BlockControls>
 			) }
 			<InspectorControls>
-				<PanelBody title={ __( 'Display', 'blocks-for-lastfm' ) }>
+				<PanelBody title={ __( 'Display', 'blocks-for-last-fm' ) }>
 					<ToggleControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
 						label={ __(
 							'Include links to tracks',
-							'blocks-for-lastfm'
+							'blocks-for-last-fm'
 						) }
 						checked={ includeLinkToTrack }
 						onChange={ () =>
@@ -186,7 +186,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						__next40pxDefaultSize
 						min={ 1 }
 						max={ 50 }
-						label={ __( 'Number of Tracks', 'blocks-for-lastfm' ) }
+						label={ __( 'Number of Tracks', 'blocks-for-last-fm' ) }
 						value={ numberOfTracks || 1 }
 						onChange={ ( value ) =>
 							setAttributes( { numberOfTracks: value } )
@@ -197,7 +197,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						__next40pxDefaultSize
 						label={ __(
 							'Show track artwork',
-							'blocks-for-lastfm'
+							'blocks-for-last-fm'
 						) }
 						checked={ showTrackArtwork }
 						onChange={ () =>
@@ -209,7 +209,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					{ showTrackArtwork && (
 						<SelectControl
 							__next40pxDefaultSize
-							label={ __( 'Image Style', 'blocks-for-lastfm' ) }
+							label={ __( 'Image Style', 'blocks-for-last-fm' ) }
 							value={ imageStyle || 'default' }
 							options={ [
 								{ label: 'Default', value: 'default' },
@@ -224,15 +224,15 @@ export default function Edit( { attributes, setAttributes } ) {
 					) }
 				</PanelBody>
 				<PanelBody
-					title={ __( 'Last.fm User Details', 'blocks-for-lastfm' ) }
+					title={ __( 'Last.fm User Details', 'blocks-for-last-fm' ) }
 				>
 					<TextControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
-						label={ __( 'Last.fm Username', 'blocks-for-lastfm' ) }
+						label={ __( 'Last.fm Username', 'blocks-for-last-fm' ) }
 						help={ __(
 							'Set the API key in Settings > Blocks for Last.fm.',
-							'blocks-for-lastfm'
+							'blocks-for-last-fm'
 						) }
 						value={ username || '' }
 						onChange={ ( value ) =>

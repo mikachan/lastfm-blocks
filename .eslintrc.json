@@ -8,7 +8,7 @@
 		"@wordpress/i18n-text-domain": [
 			"error",
 			{
-				"allowedTextDomain": "blocks-for-lastfm"
+				"allowedTextDomain": "blocks-for-last-fm"
 			}
 		],
 		"react/jsx-boolean-value": "error",

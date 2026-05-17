@@ -1,5 +1,5 @@
 {
-	"name": "blocks-for-lastfm",
+	"name": "blocks-for-last-fm",
 	"version": "1.0.0",
 	"description": "A collection of blocks for displaying Last.fm listening data.",
 	"author": "Sarah Norris",
@@ -42,7 +42,7 @@
 	},
 	"files": [
 		"build",
-		"blocks-for-lastfm.php",
+		"blocks-for-last-fm.php",
 		"uninstall.php",
 		"readme.txt",
 		"LICENSE"

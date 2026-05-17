@@ -40,7 +40,7 @@ Last.fm Privacy Policy: https://www.last.fm/legal/privacy
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/blocks-for-lastfm` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/blocks-for-last-fm` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Add your Last.fm API key in Settings > Blocks for Last.fm.
 4. Add your Last.fm username in the block settings.
