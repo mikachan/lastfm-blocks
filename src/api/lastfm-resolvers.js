@@ -5,6 +5,7 @@ import { __, sprintf } from '@wordpress/i18n';
 
 const LASTFM_API_URL = 'https://ws.audioscrobbler.com/2.0/';
 const LASTFM_RECENT_TRACKS_METHOD = 'user.getrecenttracks';
+const MAX_TRACK_LIMIT = 50;
 
 /**
  * Fetches recent tracks from Last.fm API
@@ -24,10 +25,11 @@ export async function fetchLastFmTracks(
 		throw new Error( 'API key and username are required' );
 	}
 
-	const limit = parseInt( numberOfTracks, 10 );
-	if ( isNaN( limit ) || limit < 1 ) {
+	const requestedLimit = parseInt( numberOfTracks, 10 );
+	if ( isNaN( requestedLimit ) || requestedLimit < 1 ) {
 		throw new Error( 'Number of tracks must be a positive number' );
 	}
+	const limit = Math.min( requestedLimit, MAX_TRACK_LIMIT );
 
 	try {
 		const query = new URLSearchParams( {

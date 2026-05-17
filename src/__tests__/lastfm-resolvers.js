@@ -54,6 +54,23 @@ describe( 'fetchLastFmTracks', () => {
 		expect( requestUrl.searchParams.get( 'limit' ) ).toBe( '2' );
 	} );
 
+	it( 'should cap the number of tracks to the maximum limit', async () => {
+		global.fetch.mockResolvedValueOnce( {
+			json: () =>
+				Promise.resolve( {
+					recenttracks: {
+						track: [],
+						'@attr': { total: '1' },
+					},
+				} ),
+		} );
+
+		await fetchLastFmTracks( 'api-key', 'username', '51' );
+
+		const requestUrl = new URL( global.fetch.mock.calls[ 0 ][ 0 ] );
+		expect( requestUrl.searchParams.get( 'limit' ) ).toBe( '50' );
+	} );
+
 	it( 'should throw error for missing credentials', async () => {
 		await expect( fetchLastFmTracks( '', 'username' ) ).rejects.toThrow(
 			'API key and username are required'
