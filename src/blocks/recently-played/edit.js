@@ -28,7 +28,7 @@ import { store as noticesStore } from '@wordpress/notices';
 import { fetchLastFmTracks } from '../../api/lastfm-resolvers';
 import { TracksList } from '../../components/tracks-list';
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, clientId, setAttributes } ) {
 	const {
 		apiKey,
 		username,
@@ -42,6 +42,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const [ isLoading, setIsLoading ] = useState( false );
 	const [ tracks, setTracks ] = useState( [] );
 	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
+	const noticeId = `lastfm-recently-played-error-${ clientId }`;
 
 	useEffect( () => {
 		if ( ! apiKey || ! username ) {
@@ -51,7 +52,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					'lastfm-blocks'
 				),
 				{
-					id: 'lastfm-recently-played-error',
+					id: noticeId,
 				}
 			);
 		}
@@ -62,13 +63,20 @@ export default function Edit( { attributes, setAttributes } ) {
 			fetchLastFmTracks( apiKey, username, numberOfTracks )
 				.then( ( data ) => {
 					setTracks( data );
-					removeNotice( 'lastfm-recently-played-error' );
+					removeNotice( noticeId );
 				} )
 				.catch( ( error ) => {
 					setTracks( [] );
-					createErrorNotice( error, {
-						id: 'lastfm-recently-played-error',
-					} );
+					createErrorNotice(
+						error?.message ||
+							__(
+								'Unable to fetch Last.fm tracks.',
+								'lastfm-blocks'
+							),
+						{
+							id: noticeId,
+						}
+					);
 				} )
 				.finally( () => {
 					setIsLoading( false );
@@ -77,10 +85,9 @@ export default function Edit( { attributes, setAttributes } ) {
 	}, [
 		apiKey,
 		createErrorNotice,
+		noticeId,
 		numberOfTracks,
 		removeNotice,
-		setAttributes,
-		setIsLoading,
 		username,
 	] );
 
