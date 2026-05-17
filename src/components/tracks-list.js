@@ -3,6 +3,18 @@
  */
 import { __ } from '@wordpress/i18n';
 
+function getTrackArtistName( track ) {
+	return track.artist?.[ '#text' ] || __( 'Unknown artist', 'lastfm-blocks' );
+}
+
+function getTrackArtworkUrl( track ) {
+	return (
+		track.image?.[ 1 ]?.[ '#text' ] ||
+		track.image?.find( ( image ) => image?.[ '#text' ] )?.[ '#text' ] ||
+		''
+	);
+}
+
 export function TracksList( {
 	tracks,
 	includeLinkToTrack,
@@ -13,12 +25,12 @@ export function TracksList( {
 	const isTracksValid = tracks?.length > 0;
 
 	const TrackLinkTag = ( { children, url } ) => {
-		if ( includeLinkToTrack ) {
+		if ( includeLinkToTrack && url ) {
 			return (
 				<a
 					href={ url }
 					target="_blank"
-					rel="noreferrer"
+					rel="noreferrer noopener"
 					className="track-name"
 				>
 					{ children }
@@ -36,36 +48,54 @@ export function TracksList( {
 				</li>
 			) }
 			{ isTracksValid &&
-				tracks.map( ( track ) => (
-					<li key={ track.url }>
-						{ showTrackArtwork && (
-							<div className={ `track-image ${ imageStyle }` }>
+				tracks.map( ( track, index ) => {
+					const trackName =
+						track.name || __( 'Unknown track', 'lastfm-blocks' );
+					const artistName = getTrackArtistName( track );
+					const artworkUrl = getTrackArtworkUrl( track );
+
+					return (
+						<li
+							key={
+								track.url ||
+								`${ artistName }-${ trackName }-${ index }`
+							}
+						>
+							{ showTrackArtwork && (
+								<div
+									className={ `track-image ${ imageStyle }` }
+								>
+									<TrackLinkTag url={ track.url }>
+										<span
+											className="artwork"
+											role="img"
+											aria-label={ `${ artistName } - ${ trackName }` }
+											style={
+												artworkUrl
+													? {
+															backgroundImage: `url(${ artworkUrl })`,
+													  }
+													: undefined
+											}
+										/>
+										{ imageStyle !== 'default' && (
+											<span className="format" />
+										) }
+									</TrackLinkTag>
+								</div>
+							) }
+							<div className="track-info">
 								<TrackLinkTag url={ track.url }>
-									<span
-										className="artwork"
-										role="img"
-										aria-label={ `${ track.artist[ '#text' ] } - ${ track.name }` }
-										style={ {
-											backgroundImage: `url(${ track.image[ 1 ][ '#text' ] })`,
-										} }
-									/>
-									{ imageStyle !== 'default' && (
-										<span className="format" />
-									) }
+									{ trackName }
 								</TrackLinkTag>
+								<br />
+								<span className="artist-name">
+									{ artistName }
+								</span>
 							</div>
-						) }
-						<div className="track-info">
-							<TrackLinkTag url={ track.url }>
-								{ track.name }
-							</TrackLinkTag>
-							<br />
-							<span className="artist-name">
-								{ track.artist[ '#text' ] }
-							</span>
-						</div>
-					</li>
-				) ) }
+						</li>
+					);
+				} ) }
 		</ul>
 	);
 }
