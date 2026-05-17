@@ -43,6 +43,7 @@
 	"files": [
 		"build",
 		"blocks-for-lastfm.php",
+		"uninstall.php",
 		"readme.txt",
 		"LICENSE"
 	]

@@ -43,6 +43,7 @@
 	<arg name="parallel" value="20"/>
 
 	<file>./blocks-for-lastfm.php</file>
+	<file>./uninstall.php</file>
 	<file>./src</file>
 
 	<!-- Exclude generated files -->
