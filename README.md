@@ -1,4 +1,4 @@
-# Last.fm Blocks
+# Blocks for Last.fm
 
 A collection of WordPress blocks that use the [Last.fm API](https://www.last.fm/api) to display data from a user's Last.fm account.
 
@@ -16,7 +16,7 @@ This block has the following settings:
 | Artwork Type | Choose between default, vinyl, cassette, or CD artwork | string | `default` |
 | Include Link to Track | Whether to include a link to the track on Last.fm | boolean | `true` |
 
-Set the Last.fm API key once in Settings > Last.fm Blocks.
+Set the Last.fm API key once in Settings > Blocks for Last.fm.
 
 ## Requirements
 

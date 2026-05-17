@@ -1,10 +1,10 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "lastfm-blocks/lastfm-recently-played-block",
+  "name": "blocks-for-lastfm/recently-played-tracks",
   "version": "1.0.0",
-  "title": "Last.fm Recently Played Block",
-  "category": "lastfm-blocks",
+  "title": "Recently Played Tracks",
+  "category": "blocks-for-lastfm",
   "icon": "playlist-audio",
   "description": "Display your most recently played tracks scrobbled from Last.fm.",
   "keywords": [
@@ -76,7 +76,7 @@
     },
     "shadow": true
   },
-  "textdomain": "lastfm-blocks",
+  "textdomain": "blocks-for-lastfm",
   "editorScript": "file:./index.js",
   "style": "file:./style-index.css",
   "render": "file:./render.php"

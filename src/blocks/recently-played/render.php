@@ -40,7 +40,7 @@ if ( ! function_exists( 'lastfm_blocks_fetch_recent_tracks' ) ) {
 			),
 			array(
 				'timeout'    => 8,
-				'user-agent' => 'Last.fm Blocks/' . $user_agent_version . '; https://github.com/mikachan/lastfm-recently-played-block',
+				'user-agent' => 'Blocks-for-Last.fm/' . $user_agent_version . '; https://github.com/mikachan/lastfm-recently-played-block',
 			)
 		);
 
@@ -94,7 +94,7 @@ if ( ! function_exists( 'lastfm_blocks_get_track_name' ) ) {
 			return sanitize_text_field( $track['name'] );
 		}
 
-		return __( 'Unknown track', 'lastfm-blocks' );
+		return __( 'Unknown track', 'blocks-for-lastfm' );
 	}
 }
 
@@ -114,7 +114,7 @@ if ( ! function_exists( 'lastfm_blocks_get_track_artist_name' ) ) {
 			return sanitize_text_field( $track['artist'] );
 		}
 
-		return __( 'Unknown artist', 'lastfm-blocks' );
+		return __( 'Unknown artist', 'blocks-for-lastfm' );
 	}
 }
 
@@ -164,7 +164,7 @@ $tracks           = ( $api_key && $username ) ? lastfm_blocks_fetch_recent_track
 	<ul class="<?php echo esc_attr( 'tracks-list has-text-align-' . $text_align ); ?>">
 		<?php if ( empty( $tracks ) ) : ?>
 			<li class="no-tracks-found">
-				<?php esc_html_e( 'No recently played tracks found.', 'lastfm-blocks' ); ?>
+				<?php esc_html_e( 'No recently played tracks found.', 'blocks-for-lastfm' ); ?>
 			</li>
 		<?php else : ?>
 			<?php foreach ( $tracks as $track ) : ?>

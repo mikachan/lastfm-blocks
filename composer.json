@@ -1,6 +1,6 @@
 {
-	"name": "lastfm-blocks/lastfm-blocks",
-	"description": "A collection of blocks for Last.fm.",
+	"name": "blocks-for-lastfm/blocks-for-lastfm",
+	"description": "A collection of blocks for displaying Last.fm listening data.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
 	"require": {

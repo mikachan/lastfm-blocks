@@ -1,7 +1,7 @@
 {
-	"name": "lastfm-blocks",
+	"name": "blocks-for-lastfm",
 	"version": "1.0.0",
-	"description": "A collection of blocks for Last.fm.",
+	"description": "A collection of blocks for displaying Last.fm listening data.",
 	"author": "Sarah Norris",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
@@ -42,7 +42,7 @@
 	},
 	"files": [
 		"build",
-		"lastfm-blocks.php",
+		"blocks-for-lastfm.php",
 		"readme.txt",
 		"LICENSE",
 		".wordpress.org"
