@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+define( 'LASTFM_BLOCKS_VERSION', '1.0.0' );
 define( 'LASTFM_BLOCKS_API_KEY_OPTION', 'lastfm_blocks_api_key' );
 
 /**

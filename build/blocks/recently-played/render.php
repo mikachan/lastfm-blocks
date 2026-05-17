@@ -23,6 +23,8 @@ if ( ! function_exists( 'lastfm_blocks_fetch_recent_tracks' ) ) {
 			return $tracks;
 		}
 
+		$user_agent_version = defined( 'LASTFM_BLOCKS_VERSION' ) ? LASTFM_BLOCKS_VERSION : '1.0.0';
+
 		$response = wp_remote_get(
 			esc_url_raw(
 				add_query_arg(
@@ -37,7 +39,8 @@ if ( ! function_exists( 'lastfm_blocks_fetch_recent_tracks' ) ) {
 				)
 			),
 			array(
-				'timeout' => 8,
+				'timeout'    => 8,
+				'user-agent' => 'Last.fm Blocks/' . $user_agent_version . '; https://github.com/mikachan/lastfm-recently-played-block',
 			)
 		);
 
