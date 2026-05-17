@@ -44,7 +44,6 @@
 		"build",
 		"blocks-for-lastfm.php",
 		"readme.txt",
-		"LICENSE",
-		".wordpress.org"
+		"LICENSE"
 	]
 }
