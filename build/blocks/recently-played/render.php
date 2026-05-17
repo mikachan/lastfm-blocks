@@ -124,11 +124,7 @@ if ( ! function_exists( 'lastfm_blocks_get_track_artwork_url' ) ) {
 			return esc_url_raw( $track['image']['#text'] );
 		}
 
-		$images = $track['image'];
-
-		if ( isset( $track['image'][1] ) ) {
-			array_unshift( $images, $track['image'][1] );
-		}
+		$images = array_reverse( $track['image'] );
 
 		foreach ( $images as $image ) {
 			if ( is_array( $image ) && ! empty( $image['#text'] ) ) {
