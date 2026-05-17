@@ -45,6 +45,13 @@ Last.fm Privacy Policy: https://www.last.fm/legal/privacy
 3. Add your Last.fm API key in Settings > Last.fm Blocks.
 4. Add your Last.fm username in the block settings.
 
+== Source Code ==
+
+The distributed plugin includes compiled block assets in the `build` directory. The human-readable source code and build tools are available at:
+https://github.com/mikachan/lastfm-recently-played-block
+
+To build the plugin assets from source, run `npm install` and `npm run build`.
+
 == Changelog ==
 
 = 1.0.0 =
