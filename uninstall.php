@@ -2,7 +2,7 @@
 /**
  * Remove plugin data on uninstall.
  *
- * @package BlocksForLastfm
+ * @package GrooveLogBlockForLastfm
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {

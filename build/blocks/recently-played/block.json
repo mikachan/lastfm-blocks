@@ -1,10 +1,10 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "blocks-for-last-fm/recently-played-tracks",
+  "name": "groovelog-blocks-for-last-fm/recently-played-tracks",
   "version": "1.0.0",
   "title": "Recently Played Tracks",
-  "category": "blocks-for-last-fm",
+  "category": "groovelog-blocks-for-last-fm",
   "icon": "playlist-audio",
   "description": "Display your most recently played tracks scrobbled from Last.fm.",
   "keywords": [
@@ -76,7 +76,7 @@
     },
     "shadow": true
   },
-  "textdomain": "blocks-for-last-fm",
+  "textdomain": "groovelog-blocks-for-last-fm",
   "editorScript": "file:./index.js",
   "style": "file:./style-index.css",
   "render": "file:./render.php"

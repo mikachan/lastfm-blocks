@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-	<title id="title">Blocks for Last.fm icon</title>
+	<title id="title">GrooveLog Blocks for Last.fm icon</title>
 	<desc id="desc">A grid of blocks next to audio-level bars.</desc>
 	<rect width="512" height="512" fill="#18252f" />
 	<circle cx="408" cy="128" r="146" fill="#203644" opacity="0.7" />

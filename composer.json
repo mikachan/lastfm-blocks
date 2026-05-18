@@ -1,5 +1,5 @@
 {
-	"name": "blocks-for-last-fm/blocks-for-last-fm",
+	"name": "groovelog-blocks-for-last-fm/groovelog-blocks-for-last-fm",
 	"description": "A collection of blocks for displaying Last.fm listening data.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",

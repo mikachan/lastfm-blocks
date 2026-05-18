@@ -1,4 +1,4 @@
-=== Blocks for Last.fm ===
+=== GrooveLog Blocks for Last.fm ===
 Contributors:      mikachan
 Tags:              block, lastfm, scrobble, music, recently played
 Requires at least: 6.7
@@ -14,7 +14,7 @@ A collection of blocks for displaying Last.fm listening data.
 
 A collection of WordPress blocks that use the Last.fm API to display data from a user's Last.fm account.
 
-The plugin currently includes the following blocks:
+The plugin currently includes the following block:
 
 *Recently Played Tracks*
 Display a list of the most recently played tracks from a Last.fm user.
@@ -26,7 +26,7 @@ This block has the following settings:
 - Artwork Type: The type of artwork to display. Options are Default, Vinyl Record, CD, and Cassette Tape.
 - Include Link to Track: Whether to include a link to the track on Last.fm.
 
-Set the Last.fm API key once in Settings > Blocks for Last.fm.
+Set the Last.fm API key once in Settings > GrooveLog Blocks for Last.fm.
 
 == External Services ==
 
@@ -40,15 +40,15 @@ Last.fm Privacy Policy: https://www.last.fm/legal/privacy
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/blocks-for-last-fm` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/groovelog-blocks-for-last-fm` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Add your Last.fm API key in Settings > Blocks for Last.fm.
+3. Add your Last.fm API key in Settings > GrooveLog Blocks for Last.fm.
 4. Add your Last.fm username in the block settings.
 
 == Source Code ==
 
 The distributed plugin includes compiled block assets in the `build` directory. The human-readable source code and build tools are available at:
-https://github.com/mikachan/lastfm-blocks
+https://github.com/mikachan/groovelog-blocks-for-last-fm
 
 To build the plugin assets from source, run `npm install` and `npm run build`.
 

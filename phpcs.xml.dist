@@ -12,7 +12,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="blocks-for-last-fm"/>
+				<element value="groovelog-blocks-for-last-fm"/>
 				<element value="default"/>
 			</property>
 		</properties>
@@ -42,7 +42,7 @@
 	<!-- Check up to 20 files simultaneously. -->
 	<arg name="parallel" value="20"/>
 
-	<file>./blocks-for-last-fm.php</file>
+	<file>./groovelog-blocks-for-last-fm.php</file>
 	<file>./uninstall.php</file>
 	<file>./src</file>
 
